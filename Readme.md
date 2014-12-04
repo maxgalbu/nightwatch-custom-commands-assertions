@@ -48,7 +48,7 @@ Here's a list:
 
 Some assertion requires a command, so be sure to tell nightwatch to include those commands (you need to change nightwatch.json)
 
-- **urlMatch**: check if the url matches the regex provided
+- **urlMatch**: assert that the url matches the regex provided
 	
 	```js
 	browser
@@ -58,7 +58,7 @@ Some assertion requires a command, so be sure to tell nightwatch to include thos
 	
 	requires command: none
 
-- **jqueryElementPresent**: check if the url matches the regex provided
+- **jqueryElementPresent**: assert that the element identified by the jquery selector exists in the DOM:
 	
 	```js
 	browser
