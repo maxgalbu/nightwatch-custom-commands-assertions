@@ -16,8 +16,12 @@ Here's a list:
 - **jqueryElement**: returns an element using jquery selectors
 	
 	```js
-	browser.jqueryClick(".classname:first > input:checked")
-	browser.jqueryClick("div:has(.classname):contains('something'):last")
+	browser.jqueryElement(".classname:first > input:checked", function(element) {
+		//Element is the DOM element
+	})
+	browser.jqueryElement("div:has(.classname):contains('something'):last", function(element) {
+		//Element is the DOM element
+	})
 	```
 	
 - **setSelect2Data**: set a select2 value using select2("data")
@@ -29,7 +33,7 @@ Here's a list:
 - **setSelect2Value**: set a select2 value using select2("value")
 	
 	```js
-	browser.jqueryClick("select.has-select2:hidden", "some value")
+	browser.setSelect2Value("select.has-select2:hidden", "some value")
 	```
 	
 - **setValueAndTrigger**: set a value on an <input> or a <select> and trigger a `change` event
