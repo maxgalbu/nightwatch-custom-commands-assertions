@@ -24,19 +24,19 @@ Here's a list:
 	})
 	```
 	
-- **setSelect2Data**: set a select2 value using select2("data")
+- **setSelect2Data**: set a select2 value using select2("data", object)
 	
 	```js
 	browser.setSelect2Data("input[type=hidden].has-select2", {id:1, text: "hello"})
 	```
 	
-- **setSelect2Value**: set a select2 value using select2("value")
+- **setSelect2Value**: set a select2 value using select2("val", string/number)
 	
 	```js
 	browser.setSelect2Value("select.has-select2:hidden", "some value")
 	```
 	
-- **setValueAndTrigger**: set a value on an <input> or a <select> and trigger a `change` event
+- **setValueAndTrigger**: set a value on an `<input>` or a `<select>` and trigger a `change` event
 	
 	```js
 	browser.setValueAndTrigger("select", "some value")
