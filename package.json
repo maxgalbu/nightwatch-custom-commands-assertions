@@ -1,0 +1,31 @@
+{
+  "name": "nightwatch-custom-commands-assertions",
+  "version": "1.0.0",
+  "description": "These are some commands and assertion I use when I'm testing with nightwatch.js and selenium.",
+  "main": "none",
+  "scripts": {
+    "test": "coffeelint -r coffee/",
+    "preinstall": "npm install -g gulp coffeelint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maxgalbu/nightwatch-custom-commands-assertions"
+  },
+  "keywords": [
+    "nightwatch",
+    "commands",
+    "assertions"
+  ],
+  "author": "max galbusera",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maxgalbu/nightwatch-custom-commands-assertions/issues"
+  },
+  "homepage": "https://github.com/maxgalbu/nightwatch-custom-commands-assertions",
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-coffee": "^2.2.0",
+    "gulp-plumber": "^0.6.6",
+    "gulp-util": "^3.0.1"
+  }
+}
