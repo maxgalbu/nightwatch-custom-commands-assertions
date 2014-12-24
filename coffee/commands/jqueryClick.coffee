@@ -4,7 +4,7 @@ module.exports.command = (selector, callback) ->
 	execute = (selector) ->
 		$(selector).click();
 		return true;
-	execcallback = () =>
+	execcallback = =>
 		if callback
 			callback.call(this, true);
 	

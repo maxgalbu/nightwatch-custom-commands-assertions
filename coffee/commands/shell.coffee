@@ -11,7 +11,7 @@ class ShellAction extends events.EventEmitter
 			if (typeof callback == "function")
 				callback.call(@, err, stdout, stderr);
 			
-			@emit('complete'); 
+			@emit('complete');
 		);
 		
 		return this;
