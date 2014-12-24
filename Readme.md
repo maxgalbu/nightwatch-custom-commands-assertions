@@ -25,6 +25,10 @@ Then, open the nightwatch.json file in your editor (or [create it if it doesn't 
 
 Now you should be able to use these commands/assertions when you call `nightwatch --test`.
 
+### Contributing
+
+See [Contributing.md](https://github.com/maxgalbu/nightwatch-custom-commands-assertions/blob/master/Contributing.md).
+
 ### List of commands
 
 - **jqueryClick**: clicks an element using jquery selectors
