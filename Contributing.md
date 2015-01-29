@@ -12,9 +12,11 @@ Now, do you use coffeescript? Follow these steps:
 - run `gulp watch`
 - start writing your command in the `coffee/commands` folder or your assertion in the `coffee/assertions` folder
 - run `npm test` when you're done, and fix the errors
+- make a pull request
 
 Do you use javascript instead? Bad boy. Follow these steps:
 
 - checkout the repository
 - start writing your command in the `js/commands` folder or your assertion in the `js/assertions` folder
+- make a pull request
 - I'll convert the command/assertion for you in coffeescript
