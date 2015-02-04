@@ -1,3 +1,5 @@
+#!/bin/sh
+
 #Lint the coffee files
 coffeelint -r coffee/
 

@@ -1,5 +1,9 @@
 language: node_js
 
+before_install:
+    - "export DISPLAY=:99.0"
+    - "sh -e /etc/init.d/xvfb start"
+
 before_script:
     #Run mockserver and selenium
     - java -jar tests/mockserver-netty-3.9.1-jar-with-dependencies.jar -serverPort 9999 &
