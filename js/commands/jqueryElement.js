@@ -5,9 +5,9 @@ module.exports.command = function(selector, callback) {
     return $(selector).get(0);
   };
   execcallback = (function(_this) {
-    return function(element) {
+    return function(result) {
       if (callback) {
-        return callback.call(_this, element);
+        return callback.call(_this, result.value);
       }
     };
   })(this);

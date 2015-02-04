@@ -3,9 +3,9 @@ module.exports.command = (selector, callback) ->
 	
 	execute = (selector) ->
 		return $(selector).get(0);
-	execcallback = (element) =>
+	execcallback = (result) =>
 		if callback
-			callback.call(this, element);
+			callback.call(this, result.value);
 	
 	this.execute(execute, params, execcallback);
 	
