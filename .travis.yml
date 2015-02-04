@@ -1,1 +1,6 @@
 language: node_js
+
+before_script:
+	#Run mockserver and selenium
+	- java -jar tests/mockserver-netty-3.9.1-jar-with-dependencies.jar -serverPort 9999 &
+	- java -jar tests/selenium-server-standalone-2.44.0.jar > /dev/null 2>&1 &

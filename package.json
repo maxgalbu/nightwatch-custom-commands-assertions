@@ -4,8 +4,8 @@
   "description": "These are some commands and assertion I use when I'm testing with nightwatch.js and selenium.",
   "main": "none",
   "scripts": {
-    "test": "coffeelint -r coffee/",
-    "preinstall": "npm install -g gulp coffeelint"
+    "test": "./runTests.sh",
+    "preinstall": "npm install -g gulp coffeelint nightwatch"
   },
   "repository": {
     "type": "git",
