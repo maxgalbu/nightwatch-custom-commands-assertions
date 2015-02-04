@@ -38,3 +38,4 @@ monkeyPatchedMSC.mockHTMLResponse('/jqueryElementPresent', "html/jqueryElement.h
 monkeyPatchedMSC.mockHTMLResponse('/setSelect2Data', "html/select2.html");
 monkeyPatchedMSC.mockHTMLResponse('/setSelect2Value', "html/select2.html");
 monkeyPatchedMSC.mockHTMLResponse('/setValueAndTrigger', "html/input.html");
+monkeyPatchedMSC.mockHTMLResponse('/waitForAttribute', "html/attribute.html");

@@ -1,6 +1,17 @@
 var baseurl = "http://localhost:9999";
 
 module.exports = {
+	"test waitForAttribute": function(browser) {
+		browser.globals.waitForConditionTimeout = 5000;
+		
+		return browser
+			.url(baseurl+"/waitForAttribute")
+			.waitForAttribute("#div", "class", function (divclass) {
+		        return divclass === "myclass";
+		    })
+			.end();
+	},
+
 	"test urlMatch": function(browser) {
 		return browser
 			.url(baseurl+"/urlMatch")
