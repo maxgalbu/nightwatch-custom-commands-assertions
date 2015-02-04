@@ -3,8 +3,10 @@ language: node_js
 before_install:
     - "export DISPLAY=:99.0"
     - "sh -e /etc/init.d/xvfb start"
+    - sleep 3
 
 before_script:
     #Run mockserver and selenium
     - java -jar tests/mockserver-netty-3.9.1-jar-with-dependencies.jar -serverPort 9999 &
-    - java -jar tests/selenium-server-standalone-2.44.0.jar &
+    - java -jar tests/selenium-server-standalone-2.44.0.jar > /dev/null 2>&1 &
+    - sleep 5
