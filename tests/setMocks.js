@@ -6,9 +6,12 @@ function monkeyPatch(mockSrvClnt)
 {
 	mockSrvClnt.mockHTMLResponse = function(uri, filePath) {
 		if (!fs.existsSync(filePath))
-			return null;
+		{
+			console.log("File doesn't exist: "+filePath);
+			return;
+		}
 
-		return mockSrvClnt.mockAnyResponse({
+		mockSrvClnt.mockAnyResponse({
 			'httpRequest': {
 				'method': 'GET',
 				'path': uri,
