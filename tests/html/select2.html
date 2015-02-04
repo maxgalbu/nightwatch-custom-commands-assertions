@@ -1,0 +1,23 @@
+<html>
+<head>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#select2").select2({
+				data: [
+					{id:0,text:'enhancement'},
+					{id:1,text:'bug'},
+					{id:2,text:'duplicate'},
+					{id:3,text:'invalid'},
+					{id:4,text:'wontfix'}
+				]
+			});
+		});
+	</script>
+</head>
+<body>
+	<input type="hidden" id="select2" name="select2">
+</body>
+</html>

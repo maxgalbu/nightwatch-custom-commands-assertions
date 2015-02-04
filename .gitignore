@@ -1,1 +1,3 @@
 node_modules
+tests/mockserver.log
+tests/mockserver_request.log
