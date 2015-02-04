@@ -7,8 +7,8 @@ module.exports = {
 		return browser
 			.url(baseurl+"/waitForAttribute")
 			.waitForAttribute("#div", "class", function (divclass) {
-		        return divclass === "myclass";
-		    })
+				return divclass === "myclass";
+			})
 			.end();
 	},
 
