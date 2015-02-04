@@ -9,6 +9,13 @@ module.exports = {
 			.end();
 	},
 
+	"test jqueryElementPresent": function(browser) {
+		return browser
+			.url(baseurl+"/jqueryElementPresent")
+			.assert.jqueryElementPresent(".myclass:has(button)")
+			.end();
+	},
+
 	"test jqueryClick": function(browser) {
 		return browser
 			.url(baseurl+"/jqueryClick")

@@ -34,6 +34,7 @@ monkeyPatchedMSC = monkeyPatch(mockServerClient("localhost", 9999));
 monkeyPatchedMSC.mockHTMLResponse('/urlMatch', "html/urlMatch.html");
 monkeyPatchedMSC.mockHTMLResponse('/jqueryClick', "html/jqueryClick.html");
 monkeyPatchedMSC.mockHTMLResponse('/jqueryElement', "html/jqueryElement.html");
+monkeyPatchedMSC.mockHTMLResponse('/jqueryElementPresent', "html/jqueryElement.html");
 monkeyPatchedMSC.mockHTMLResponse('/setSelect2Data', "html/select2.html");
 monkeyPatchedMSC.mockHTMLResponse('/setSelect2Value', "html/select2.html");
 monkeyPatchedMSC.mockHTMLResponse('/setValueAndTrigger', "html/input.html");
