@@ -13,12 +13,15 @@ class WaitForAttribute extends events.EventEmitter
 		super;
 		@startTimeInMilliseconds = null;
 		@timeoutRetryInMilliseconds = 100;
+		@defaultTimeoutInMilliseconds = 5000;
 
 	command: (element, attribute, checker, timeoutInMilliseconds) ->
 		@startTimeInMilliseconds = new Date().getTime();
 
 		if typeof timeoutInMilliseconds != 'number'
 			timeoutInMilliseconds = @api.globals.waitForConditionTimeout;
+		if typeof timeoutInMilliseconds != 'number'
+			timeoutInMilliseconds = @defaultTimeoutInMilliseconds;
 
 		@check(element, attribute, checker, (result, loadedTimeInMilliseconds) =>
 			if result

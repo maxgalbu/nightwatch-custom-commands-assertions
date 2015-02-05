@@ -11,12 +11,16 @@ WaitForAttribute = (function(_super) {
     WaitForAttribute.__super__.constructor.apply(this, arguments);
     this.startTimeInMilliseconds = null;
     this.timeoutRetryInMilliseconds = 100;
+    this.defaultTimeoutInMilliseconds = 5000;
   }
 
   WaitForAttribute.prototype.command = function(element, attribute, checker, timeoutInMilliseconds) {
     this.startTimeInMilliseconds = new Date().getTime();
     if (typeof timeoutInMilliseconds !== 'number') {
       timeoutInMilliseconds = this.api.globals.waitForConditionTimeout;
+    }
+    if (typeof timeoutInMilliseconds !== 'number') {
+      timeoutInMilliseconds = this.defaultTimeoutInMilliseconds;
     }
     this.check(element, attribute, checker, (function(_this) {
       return function(result, loadedTimeInMilliseconds) {
