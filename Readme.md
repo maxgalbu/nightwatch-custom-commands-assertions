@@ -76,8 +76,18 @@ See [Contributing.md](https://github.com/maxgalbu/nightwatch-custom-commands-ass
 - **waitForAttribute**: wait for an element to have an attribute that equal some expression (thanks @dkoo761)
 	
 	```js
-	browser.waitForAttribute("img", 'src', function (imageSrc) {
+	browser.waitForAttribute("img", 'src', function(imageSrc) {
         return imageSrc === pathToSomeImage;
+    });
+	```
+
+	The command waits by default for 5 seconds, and checks every 100 milliseconds.
+
+- **waitForText**: wait for an element to have its inner HTML equal some expression (thanks @dkoo761)
+	
+	```js
+	browser.waitForText("div", function(text) {
+        return text === "something";
     });
 	```
 
