@@ -1,4 +1,4 @@
-## Nightwatch custom commands and assertions
+## Nightwatch custom commands and assertions [![Build Status](https://travis-ci.org/maxgalbu/nightwatch-custom-commands-assertions.svg?branch=master)](https://travis-ci.org/maxgalbu/nightwatch-custom-commands-assertions)
 
 These are some commands and assertion I use when I'm testing with nightwatch.js and selenium.
 
@@ -72,6 +72,16 @@ See [Contributing.md](https://github.com/maxgalbu/nightwatch-custom-commands-ass
 	```js
 	browser.shell("mysql -u root database_name < fakedata.sql")
 	```
+
+- **waitForAttribute**: wait for an element to have an attribute that equal some expression (thanks @dkoo761)
+	
+	```js
+	browser.waitForAttribute("img", 'src', function (imageSrc) {
+        return imageSrc === pathToSomeImage;
+    });
+	```
+
+	The command waits by default for 5 seconds, and checks every 100 milliseconds.
 	
 ### List of assertions
 
