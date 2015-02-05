@@ -95,7 +95,7 @@ See [Contributing.md](https://github.com/maxgalbu/nightwatch-custom-commands-ass
 	
 ### List of assertions
 
-Some assertion requires a command, so be sure to tell nightwatch to include those commands (you need to change nightwatch.json)
+Some assertion requires a command: if you already included all the repository commands (following the instructions above) you should be fine, otherwise you need to tell nightwatch where are those commands (you need to change nightwatch.json).
 
 - **urlMatch**: assert that the url matches the regex provided
 	
