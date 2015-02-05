@@ -12,11 +12,12 @@ events = require('events');
 ###
 
 class WaitForAttribute extends events.EventEmitter
+	timeoutRetryInMilliseconds: 100
+	defaultTimeoutInMilliseconds: 5000
+
 	constructor: ->
 		super;
 		@startTimeInMilliseconds = null;
-		@timeoutRetryInMilliseconds = 100;
-		@defaultTimeoutInMilliseconds = 5000;
 
 	command: (element, attribute, checker, timeoutInMilliseconds) ->
 		@startTimeInMilliseconds = new Date().getTime();

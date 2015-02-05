@@ -19,11 +19,13 @@ events = require('events');
 WaitForAttribute = (function(_super) {
   __extends(WaitForAttribute, _super);
 
+  WaitForAttribute.prototype.timeoutRetryInMilliseconds = 100;
+
+  WaitForAttribute.prototype.defaultTimeoutInMilliseconds = 5000;
+
   function WaitForAttribute() {
     WaitForAttribute.__super__.constructor.apply(this, arguments);
     this.startTimeInMilliseconds = null;
-    this.timeoutRetryInMilliseconds = 100;
-    this.defaultTimeoutInMilliseconds = 5000;
   }
 
   WaitForAttribute.prototype.command = function(element, attribute, checker, timeoutInMilliseconds) {
