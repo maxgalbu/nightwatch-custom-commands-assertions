@@ -12,6 +12,17 @@ module.exports = {
 			.end();
 	},
 
+	"test waitForText": function(browser) {
+		browser.globals.waitForConditionTimeout = 5000;
+		
+		return browser
+			.url(baseurl+"/waitForText")
+			.waitForText("#div", function (text) {
+				return text === "something else";
+			})
+			.end();
+	},
+
 	"test urlMatch": function(browser) {
 		return browser
 			.url(baseurl+"/urlMatch")
