@@ -23,6 +23,17 @@ module.exports = {
 			.end();
 	},
 
+	"test waitForTitle": function(browser) {
+		browser.globals.waitForConditionTimeout = 5000;
+		
+		return browser
+			.url(baseurl+"/waitForTitle")
+			.waitForTitle(function(title) {
+				return title === "something else";
+			})
+			.end();
+	},
+
 	"test urlMatch": function(browser) {
 		return browser
 			.url(baseurl+"/urlMatch")

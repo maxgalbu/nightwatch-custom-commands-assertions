@@ -92,6 +92,16 @@ See [Contributing.md](https://github.com/maxgalbu/nightwatch-custom-commands-ass
 	```
 
 	The command waits by default for 5 seconds, and checks every 100 milliseconds.
+
+- **waitForTitle**: wait for the `<title>` tag to equal some expression (thanks @dkoo761)
+	
+	```js
+	browser.waitForTitle(function(title) {
+        return title === "something";
+    });
+	```
+
+	The command waits by default for 5 seconds, and checks every 100 milliseconds.
 	
 ### List of assertions
 

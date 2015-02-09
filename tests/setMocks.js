@@ -40,3 +40,4 @@ monkeyPatchedMSC.mockHTMLResponse('/setSelect2Value', "html/select2.html");
 monkeyPatchedMSC.mockHTMLResponse('/setValueAndTrigger', "html/input.html");
 monkeyPatchedMSC.mockHTMLResponse('/waitForAttribute', "html/attribute.html");
 monkeyPatchedMSC.mockHTMLResponse('/waitForText', "html/text.html");
+monkeyPatchedMSC.mockHTMLResponse('/waitForTitle', "html/title.html");
