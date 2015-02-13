@@ -29,5 +29,8 @@
     "gulp-plumber": "^0.6.6",
     "gulp-util": "^3.0.1",
     "mockserver-client": "^1.0.3"
+  },
+  "dependencies": {
+    "easyimage": "^1.2.2"
   }
 }

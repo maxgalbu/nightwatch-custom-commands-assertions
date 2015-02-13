@@ -1,6 +1,24 @@
+var fs = require("fs");
+var easyimg = require("easyimage");
 var baseurl = "http://localhost:9999";
 
 module.exports = {
+	"test saveElementScreenshot": function(browser) {
+		var imageFileName = "test.png";
+
+		return browser
+			.url(baseurl+"/saveElementScreenshot")
+			.saveElementScreenshot(".jumbotron", imageFileName)
+			.perform(function(client, done) {
+				easyimg.info(imageFileName).then(function(imageInfo) {
+					client.assert.equal(imageInfo.height == 235, true, "saveElementScreenshot works");
+					fs.unlinkSync(imageFileName);
+					done();
+				});
+			})
+			.end();
+	},
+
 	"test waitForAttribute": function(browser) {
 		browser.globals.waitForConditionTimeout = 5000;
 		

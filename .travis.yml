@@ -5,6 +5,9 @@ before_install:
     - "sh -e /etc/init.d/xvfb start"
     - sleep 3
 
+install:
+	- apt-get install imagemagick
+
 before_script:
     #Run mockserver and selenium
     - java -jar tests/mockserver-netty-3.9.1-jar-with-dependencies.jar -serverPort 9999 &
