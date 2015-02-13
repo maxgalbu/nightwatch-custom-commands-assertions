@@ -6,7 +6,7 @@ before_install:
     - sleep 3
 
 install:
-    - apt-get install imagemagick
+    - sudo apt-get install imagemagick
 
 before_script:
     #Run mockserver and selenium
