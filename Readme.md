@@ -6,7 +6,7 @@ These are some commands and assertion I use when I'm testing with nightwatch.js 
 
 Go into your `tests` folder (or where your nightwatch.json is) and do:
 
-    git clone https://github.com/maxgalbu/nightwatch-custom-commands-assertions.git
+	git clone https://github.com/maxgalbu/nightwatch-custom-commands-assertions.git
 
 (or download the zipped repository [here](https://github.com/maxgalbu/nightwatch-custom-commands-assertions/archive/master.zip) and extract it).
 
@@ -64,7 +64,7 @@ See [Contributing.md](https://github.com/maxgalbu/nightwatch-custom-commands-ass
 - **setValueAndTrigger**: set a value on an `<input>` or a `<select>` and trigger a `change` event
 	
 	```js
-	browser.setValueAndTrigger("select", "some value")
+	browser.setValueAndTrigger("#a-select-or-input", "some value")
 	```
 	
 - **shell**: execute a command on the shell
@@ -77,8 +77,8 @@ See [Contributing.md](https://github.com/maxgalbu/nightwatch-custom-commands-ass
 	
 	```js
 	browser.waitForAttribute("img", 'src', function(imageSrc) {
-        return imageSrc === pathToSomeImage;
-    });
+		return imageSrc === pathToSomeImage;
+	});
 	```
 
 	The command waits by default for 5 seconds, and checks every 100 milliseconds.
@@ -87,8 +87,8 @@ See [Contributing.md](https://github.com/maxgalbu/nightwatch-custom-commands-ass
 	
 	```js
 	browser.waitForText("div", function(text) {
-        return text === "something";
-    });
+		return text === "something";
+	});
 	```
 
 	The command waits by default for 5 seconds, and checks every 100 milliseconds.
@@ -97,11 +97,36 @@ See [Contributing.md](https://github.com/maxgalbu/nightwatch-custom-commands-ass
 	
 	```js
 	browser.waitForTitle(function(title) {
-        return title === "something";
-    });
+		return title === "something";
+	});
 	```
 
 	The command waits by default for 5 seconds, and checks every 100 milliseconds.
+
+- **saveElementScreenshot**: take a screenshot of the requested element
+	
+	```js
+	browser.saveElementScreenshot(".class", "screenshot-name.jpg");
+	```
+
+	This command requires [ImageMagick](http://www.imagemagick.org) installed on the system and [node-easyimage](https://github.com/hacksparrow/node-easyimage) installed as a npm module. You can install node-easyimage with:
+
+	```
+	npm install --production
+	```
+
+	And imagemagick with:
+
+	```
+	#Centos
+	yum install ImageMagick
+
+	#OSX
+	brew install imagemagick --build-from-source
+
+	#Ubuntu
+	apt-get install ImageMagick
+	```
 	
 ### List of assertions
 
