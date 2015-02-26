@@ -24,10 +24,10 @@
   "homepage": "https://github.com/maxgalbu/nightwatch-custom-commands-assertions",
   "devDependencies": {
     "grunt": "^0.4.5",
-    "gulp": "^3.8.10",
+    "gulp": "^3.8.11",
     "gulp-coffee": "^2.2.0",
     "gulp-plumber": "^0.6.6",
-    "gulp-util": "^3.0.1",
+    "gulp-util": "^3.0.4",
     "mockserver-client": "^1.0.3"
   },
   "dependencies": {
