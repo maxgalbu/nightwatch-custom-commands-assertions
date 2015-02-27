@@ -1,3 +1,16 @@
+
+/**
+ * Clicks an element using jquery selectors.
+ *
+ * h3 Examples:
+ *
+ *     browser.jqueryClick(".classname:first > input:checked")
+ *     browser.jqueryClick("div:has(.classname):contains('something'):last")
+ *
+ * @author maxgalbu
+ * @param {String} selector - jQuery selector for the element
+ * @param {Function} [callback] - function that will be called after the element is clicked
+ */
 module.exports.command = function(selector, callback) {
   var execcallback, execute, params;
   params = [selector];

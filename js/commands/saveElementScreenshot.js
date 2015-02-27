@@ -1,3 +1,30 @@
+
+/**
+ * Take a screenshot of the requested element
+ *
+ * This command requires ImageMagick installed on the system and node-easyimage installed as a npm module. You can install node-easyimage with:
+ *
+ *     npm install --production
+ *
+ * And imagemagick with:
+ * 
+ *     #Centos
+ *     yum install ImageMagick
+ *     
+ *     #OSX
+ *     brew install imagemagick --build-from-source
+ *     
+ *     #Ubuntu
+ *     apt-get install ImageMagick
+ *
+ * h3 Examples:
+ *
+ *     browser.saveElementScreenshot(".class", "screenshot-name.jpg");
+ *
+ * @author maxgalbu
+ * @param {String} elementSelector - css/xpath selector for the element
+ * @param {Function} fileName - file path where the screenshot is saved
+ */
 var SaveElementScreenshotAction, easyimg, events,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };

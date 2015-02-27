@@ -1,3 +1,14 @@
+###*
+ * Execute a command on the shell
+ *
+ * h3 Examples:
+ *
+ *     browser.shell("mysql -u root database_name < fakedata.sql")
+ *
+ * @author maxgalbu
+ * @param {String} command to execute on the shell
+###
+
 events = require('events');
 childprocess = require("child_process");
 

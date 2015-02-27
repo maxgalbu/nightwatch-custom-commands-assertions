@@ -1,14 +1,23 @@
 events = require('events');
 
-###
-# Taken from: https://github.com/beatfactor/nightwatch/issues/246#issuecomment-59461345
-# Written by: @dkoo761
-#
-# This custom command allows us to locate an HTML element on the page and then wait until the value of the element's
-# inner text (the text between the opening and closing tags) matches the provided expression (aka. the 'checker' function).
-# It retries executing the checker function every 100ms until either it evaluates to true or it reaches
-# maxTimeInMilliseconds (which fails the test).
-# Nightwatch uses the Node.js EventEmitter pattern to handle asynchronous code so this command is also an EventEmitter.
+###*
+ * This custom command allows us to locate an HTML element on the page and then wait until the value of the element's
+ * inner text (the text between the opening and closing tags) matches the provided expression (aka. the 'checker' function).
+ * It retries executing the checker function every 100ms until either it evaluates to true or it reaches
+ * maxTimeInMilliseconds (which fails the test).
+ * Nightwatch uses the Node.js EventEmitter pattern to handle asynchronous code so this command is also an EventEmitter.
+ *
+ * h3 Examples:
+ *
+ *     browser.waitForText("div", function(text) {
+ *         return text === "something";
+ *     });
+ *
+ * @author dkoo761
+ * @see https://github.com/beatfactor/nightwatch/issues/246#issuecomment-59461345
+ * @param {String} elementSelector - css/xpath selector for the element
+ * @param {Function} checker - function that must return true if the element's text matches your requisite, false otherwise
+ * @param {Integer} [timeoutInMilliseconds] - timeout of this wait commands in milliseconds
 ###
 
 class WaitForText extends events.EventEmitter
@@ -19,7 +28,7 @@ class WaitForText extends events.EventEmitter
 		super;
 		@startTimeInMilliseconds = null;
 
-	command: (element, checker, timeoutInMilliseconds) ->
+	command: (elementSelector, checker, timeoutInMilliseconds) ->
 		@startTimeInMilliseconds = new Date().getTime();
 
 		if typeof timeoutInMilliseconds != 'number'
@@ -27,12 +36,12 @@ class WaitForText extends events.EventEmitter
 		if typeof timeoutInMilliseconds != 'number'
 			timeoutInMilliseconds = @defaultTimeoutInMilliseconds;
 
-		@check(element, checker, (result, loadedTimeInMilliseconds) =>
+		@check(elementSelector, checker, (result, loadedTimeInMilliseconds) =>
 			if (result)
-				message = "waitForText: #{element}.
+				message = "waitForText: #{elementSelector}.
 					Expression was true after #{loadedTimeInMilliseconds - @startTimeInMilliseconds} ms.";
 			else
-				message = "waitForText: #{element}.
+				message = "waitForText: #{elementSelector}.
 					Expression wasn't true in #{timeoutInMilliseconds} ms.";
 			
 			@client.assertion(result, 'expression false', 'expression true', message, true);
@@ -41,14 +50,14 @@ class WaitForText extends events.EventEmitter
 
 		return this;
 
-	check: (element, checker, callback, maxTimeInMilliseconds) ->
-		@api.getText(element, (result) =>
+	check: (elementSelector, checker, callback, maxTimeInMilliseconds) ->
+		@api.getText(elementSelector, (result) =>
 			now = new Date().getTime();
 			if result.status == 0 && checker(result.value)
 				callback(true, now);
 			else if now - @startTimeInMilliseconds < maxTimeInMilliseconds
 				setTimeout(=>
-					@check(element, checker, callback, maxTimeInMilliseconds);
+					@check(elementSelector, checker, callback, maxTimeInMilliseconds);
 				, @timeoutRetryInMilliseconds);
 			else
 				callback(false);

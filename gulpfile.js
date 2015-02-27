@@ -1,7 +1,9 @@
 var gulp = require("gulp"),
 	gulputil = require("gulp-util"),
 	coffeescript = require("gulp-coffee"),
-	plumber = require("gulp-plumber");
+	plumber = require("gulp-plumber"),
+	markdox = require("gulp-markdox")
+	rename = require("gulp-rename");
 
 gulp.task("default", ["assertions", "commands"]);
 
@@ -29,7 +31,29 @@ gulp.task("commands", function() {
 		.pipe(gulp.dest("js/commands/"));
 });
 
+gulp.task("docs", function() {
+	return gulp.src([
+			"coffee/commands/*.coffee",
+			"coffee/assertions/*.coffee"
+		])
+		.pipe(plumber(function(error) {
+			gulputil.log(gulputil.colors.red(error.message));
+			this.emit("end");
+		}))
+		.pipe(markdox())
+		.pipe(rename({
+			extname: ".md"
+		}))
+    	.pipe(gulp.dest("docs"));
+});
+
 gulp.task("watch", function() {
 	gulp.watch('coffee/assertions/**', ['assertions']);
 	gulp.watch('coffee/commands/**', ['commands']);
+
+	gulp.watch([
+		"coffee/commands/*.coffee",
+		"coffee/assertions/*.coffee"
+	], ['docs']);
+
 });

@@ -5,15 +5,25 @@ var WaitForAttribute, events,
 events = require('events');
 
 
-/*
- * Taken from: https://github.com/beatfactor/nightwatch/issues/246#issuecomment-59461345
- * Written by: @dkoo761
- *
+/**
  * This custom command allows us to locate an HTML element on the page and then wait until the value of a
  * specified attribute matches the provided expression (aka. the 'checker' function).
  * It retries executing the checker function every 100ms until either it evaluates to true or it reaches
  * maxTimeInMilliseconds (which fails the test). Nightwatch uses the Node.js EventEmitter pattern to handle
  * asynchronous code so this command is also an EventEmitter.
+ *
+ * h3 Examples:
+ *
+ *     browser.waitForAttribute("img", "src", function(imageSource) {
+ *         return imageSource === "img/header.jpg";
+ *     });
+ *
+ * @author dkoo761
+ * @see https://github.com/beatfactor/nightwatch/issues/246#issuecomment-59461345
+ * @param {String} elementSelector - css/xpath selector for the element
+ * @param {String} attribute - attribute to be checked
+ * @param {Function} checker - function that must return true if the attribute matches, false otherwise
+ * @param {Integer} [timeoutInMilliseconds] - timeout of this wait commands in milliseconds
  */
 
 WaitForAttribute = (function(_super) {
@@ -28,7 +38,7 @@ WaitForAttribute = (function(_super) {
     this.startTimeInMilliseconds = null;
   }
 
-  WaitForAttribute.prototype.command = function(element, attribute, checker, timeoutInMilliseconds) {
+  WaitForAttribute.prototype.command = function(elementSelector, attribute, checker, timeoutInMilliseconds) {
     this.startTimeInMilliseconds = new Date().getTime();
     if (typeof timeoutInMilliseconds !== 'number') {
       timeoutInMilliseconds = this.api.globals.waitForConditionTimeout;
@@ -36,13 +46,13 @@ WaitForAttribute = (function(_super) {
     if (typeof timeoutInMilliseconds !== 'number') {
       timeoutInMilliseconds = this.defaultTimeoutInMilliseconds;
     }
-    this.check(element, attribute, checker, (function(_this) {
+    this.check(elementSelector, attribute, checker, (function(_this) {
       return function(result, loadedTimeInMilliseconds) {
         var message;
         if (result) {
-          message = "waitForAttribute: " + element + "@" + attribute + ". Expression was true after " + (loadedTimeInMilliseconds - _this.startTimeInMilliseconds) + ".";
+          message = "waitForAttribute: " + elementSelector + "@" + attribute + ". Expression was true after " + (loadedTimeInMilliseconds - _this.startTimeInMilliseconds) + ".";
         } else {
-          message = "waitForAttribute: " + element + "@" + attribute + ". Expression wasn't true in " + timeoutInMilliseconds + " ms.";
+          message = "waitForAttribute: " + elementSelector + "@" + attribute + ". Expression wasn't true in " + timeoutInMilliseconds + " ms.";
         }
         _this.client.assertion(result, 'expression false', 'expression true', message, true);
         return _this.emit('complete');
@@ -51,8 +61,8 @@ WaitForAttribute = (function(_super) {
     return this;
   };
 
-  WaitForAttribute.prototype.check = function(element, attribute, checker, callback, maxTimeInMilliseconds) {
-    return this.api.getAttribute(element, attribute, (function(_this) {
+  WaitForAttribute.prototype.check = function(elementSelector, attribute, checker, callback, maxTimeInMilliseconds) {
+    return this.api.getAttribute(elementSelector, attribute, (function(_this) {
       return function(result) {
         var now;
         now = new Date().getTime();
@@ -60,7 +70,7 @@ WaitForAttribute = (function(_super) {
           return callback(true, now);
         } else if (now - _this.startTimeInMilliseconds < maxTimeInMilliseconds) {
           return setTimeout(function() {
-            return _this.check(element, attribute, checker, callback, maxTimeInMilliseconds);
+            return _this.check(elementSelector, attribute, checker, callback, maxTimeInMilliseconds);
           }, _this.timeoutRetryInMilliseconds);
         } else {
           return callback(false);

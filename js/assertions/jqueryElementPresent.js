@@ -1,3 +1,18 @@
+
+/**
+ * Assert that the url matches the regex provided.
+ * ***Requires jqueryElement command***
+ *
+ * h3 Examples:
+ *
+ *     browser
+ *         .url("http://www.github.com")
+ *         .assert.jqueryElementPresent("div:eq(2)")
+ *
+ * @author maxgalbu
+ * @param {RegExp} selector - jQuery selector
+ * @param {String} [msg] - output to identify the assertion
+ */
 var util;
 
 util = require('util');

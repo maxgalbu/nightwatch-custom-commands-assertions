@@ -1,3 +1,14 @@
+
+/**
+ * Execute a command on the shell
+ *
+ * h3 Examples:
+ *
+ *     browser.shell("mysql -u root database_name < fakedata.sql")
+ *
+ * @author maxgalbu
+ * @param {String} command to execute on the shell
+ */
 var ShellAction, childprocess, events,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
