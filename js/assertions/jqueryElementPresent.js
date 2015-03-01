@@ -1,6 +1,6 @@
 
 /**
- * Assert that the url matches the regex provided.
+ * Assert that the element identified by the jquery selector exists in the DOM.
  * ***Requires jqueryElement command***
  *
  * h3 Examples:

@@ -2,7 +2,7 @@
 
 <!-- Start coffee/assertions/jqueryElementPresent.coffee -->
 
-Assert that the url matches the regex provided.
+Assert that the element identified by the jquery selector exists in the DOM.
 ***Requires jqueryElement command***
 ### Examples:
 
