@@ -12,10 +12,10 @@ And imagemagick with:
 
     #Centos
     yum install ImageMagick
-    
+
     #OSX
     brew install imagemagick --build-from-source
-    
+
     #Ubuntu
     apt-get install ImageMagick
 ### Examples:
