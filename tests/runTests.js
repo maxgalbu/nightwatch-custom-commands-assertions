@@ -67,6 +67,13 @@ module.exports = {
 			.end();
 	},
 
+	"test jqueryElementNotPresent": function(browser) {
+		return browser
+			.url(baseurl+"/jqueryElementPresent")
+			.assert.jqueryElementNotPresent(".noclass")
+			.end();
+	},
+
 	"test jqueryClick": function(browser) {
 		return browser
 			.url(baseurl+"/jqueryClick")
