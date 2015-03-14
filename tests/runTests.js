@@ -81,7 +81,7 @@ module.exports = {
 			.assert.visible("#div")
 			.jqueryClick("a")
 			.pause(1000)
-			.assert.urlMatch(/jqueryElement/)
+			.assert.urlMatch(/github/)
 			.end();
 	},
 
