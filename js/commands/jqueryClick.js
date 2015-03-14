@@ -15,7 +15,11 @@ module.exports.command = function(selector, callback) {
   var execcallback, execute, params;
   params = [selector];
   execute = function(selector) {
-    $(selector).click();
+    var element;
+    element = $(selector);
+    if (element.length) {
+      element[0].click();
+    }
     return true;
   };
   execcallback = (function(_this) {

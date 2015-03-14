@@ -15,7 +15,8 @@ module.exports.command = (selector, callback) ->
 	params = [selector];
 	
 	execute = (selector) ->
-		$(selector).click();
+		element = $(selector);
+		element[0].click() if element.length
 		return true;
 	execcallback = =>
 		if callback

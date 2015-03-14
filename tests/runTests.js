@@ -79,6 +79,9 @@ module.exports = {
 			.url(baseurl+"/jqueryClick")
 			.jqueryClick("div:eq(2) button")
 			.assert.visible("#div")
+			.jqueryClick("a")
+			.pause(1000)
+			.assert.urlMatch(/jqueryElement/)
 			.end();
 	},
 
