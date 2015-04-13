@@ -2,8 +2,7 @@ language: node_js
 
 env:
   - NIGHTWATCH_ENV=
-  - NIGHTWATCH_ENV=chrome
-  - CHROME_BIN=chromium-browser
+  - NIGHTWATCH_ENV=chrome CHROME_BIN=chromium-browser
 
 matrix:
   allow_failures:
