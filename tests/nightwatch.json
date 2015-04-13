@@ -3,16 +3,15 @@
 	"output_folder": false,
 	"custom_commands_path": "../js/commands",
 	"custom_assertions_path": "../js/assertions",
-	"globals_path": "",
 	
 	"selenium": {
-		"start_process": false,
-		"server_path": "",
-		"log_path": "",
+		"start_process": true,
+		"server_path": "../node_modules/selenium-server/lib/runner/selenium-server-standalone-2.45.0.jar",
+		"log_path": false,
 		"host": "127.0.0.1",
 		"port": 4444,
 		"cli_args": {
-			"webdriver.chrome.driver": "",
+			"webdriver.chrome.driver": "../node_modules/chromedriver/lib/chromedriver/chromedriver",
 			"webdriver.ie.driver": ""
 		}
 	},
@@ -36,9 +35,7 @@
 		
 		"chrome": {
 			"desiredCapabilities": {
-				"browserName": "chrome",
-				"javascriptEnabled": true,
-				"acceptSslCerts": true
+				"browserName": "chrome"
 			}
 		}
 	}

@@ -1,5 +1,13 @@
 language: node_js
 
+env:
+  - NIGHTWATCH_ENV=
+  - NIGHTWATCH_ENV=chrome
+
+matrix:
+  allow_failures:
+    - env: "NIGHTWATCH_ENV=chrome"
+
 before_install:
     - "export DISPLAY=:99.0"
     - "sh -e /etc/init.d/xvfb start"

@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
+NIGHTWATCH_ENV=${NIGHTWATCH_ENV:-default}
+
 #Lint the coffee files
 coffeelint -r coffee/
 status_coffeelint=$?
 
 #Run background jobs
 java -jar tests/mockserver-netty-3.9.1-jar-with-dependencies.jar -serverPort 9999 > /dev/null 2>&1 &
-java -jar tests/selenium-server-standalone-2.44.0.jar > /dev/null 2>&1 &
 sleep 3
 
 cd tests
@@ -15,7 +16,7 @@ cd tests
 node setMocks.js
 
 #Run tests
-nightwatch --test
+nightwatch --test --env "$NIGHTWATCH_ENV"
 status_nightwatch=$?
 
 cd ..

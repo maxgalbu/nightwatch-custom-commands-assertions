@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/maxgalbu/nightwatch-custom-commands-assertions",
   "devDependencies": {
+    "chromedriver": "~2.10.0-1",
     "grunt": "^0.4.5",
     "gulp": "^3.8.11",
     "gulp-coffee": "^2.2.0",
@@ -30,7 +31,8 @@
     "gulp-plumber": "^0.6.6",
     "gulp-rename": "^1.2.0",
     "gulp-util": "^3.0.4",
-    "mockserver-client": "^1.0.3"
+    "mockserver-client": "^1.0.3",
+    "selenium-server": "2.45.0"
   },
   "dependencies": {
     "easyimage": "^1.2.2"
