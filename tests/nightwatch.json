@@ -36,7 +36,9 @@
 		"chrome": {
 			"desiredCapabilities": {
 				"browserName": "chrome",
-				 "args": ["no-sandbox"]
+				"chromeOptions" : {
+					"args": ["no-sandbox"]
+				}
 			}
 		}
 	}
