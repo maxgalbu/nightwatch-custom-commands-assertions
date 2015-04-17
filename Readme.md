@@ -1,4 +1,6 @@
-## Nightwatch custom commands and assertions [![Build Status](https://travis-ci.org/maxgalbu/nightwatch-custom-commands-assertions.svg?branch=master)](https://travis-ci.org/maxgalbu/nightwatch-custom-commands-assertions)
+## Nightwatch custom commands and assertions
+
+[![Build Status](https://travis-ci.org/maxgalbu/nightwatch-custom-commands-assertions.svg?branch=master)](https://travis-ci.org/maxgalbu/nightwatch-custom-commands-assertions) [![npm version](https://badge.fury.io/js/nightwatch-custom-commands-assertions.svg)](http://badge.fury.io/js/nightwatch-custom-commands-assertions)
 
 These are some commands and assertion I use when I'm testing with nightwatch.js and selenium.
 
