@@ -10,7 +10,7 @@
  *         .assert.jqueryElementPresent("div:eq(2)")
  *
  * @author maxgalbu
- * @param {RegExp} selector - jQuery selector
+ * @param {String} selector - jQuery selector
  * @param {String} [msg] - output to identify the assertion
  */
 var util;
