@@ -6,10 +6,8 @@ module.exports = {
 	"test elementHasChildren": function(browser) {
 		return browser
 			.url(baseurl+"/children")
-			.pause(10000)
 			.assert.elementHasChildren(".myclass")
 			.assert.elementHasChildren(".myclass", "li")
-			.pause(10000)
 			.end();
 	},
 
