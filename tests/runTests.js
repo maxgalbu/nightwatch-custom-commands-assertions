@@ -9,7 +9,6 @@ module.exports = {
 			.pause(10000)
 			.assert.elementHasChildren(".myclass")
 			.assert.elementHasChildren(".myclass", "li")
-			.verify.elementHasChildren(".myclass", "div")
 			.pause(10000)
 			.end();
 	}
