@@ -11,7 +11,7 @@ module.exports = {
 			.assert.elementHasChildren(".myclass", "li")
 			.pause(10000)
 			.end();
-	}
+	},
 
 	"test saveElementScreenshot": function(browser) {
 		var imageFileName = "test.png";
