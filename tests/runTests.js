@@ -11,6 +11,14 @@ module.exports = {
 			.end();
 	},
 
+	"test elementHasNoChildren": function(browser) {
+		return browser
+			.url(baseurl+"/nochildren")
+			.assert.elementHasNoChildren(".myclass")
+			.assert.elementHasNoChildren(".text")
+			.end();
+	},
+
 	"test saveElementScreenshot": function(browser) {
 		var imageFileName = "test.png";
 
