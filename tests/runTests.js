@@ -3,6 +3,17 @@ var easyimg = require("easyimage");
 var baseurl = "http://localhost:9999";
 
 module.exports = {
+	"test elementHasChildren": function(browser) {
+		return browser
+			.url(baseurl+"/children")
+			.pause(10000)
+			.assert.elementHasChildren(".myclass")
+			.assert.elementHasChildren(".myclass", "li")
+			.verify.elementHasChildren(".myclass", "div")
+			.pause(10000)
+			.end();
+	}
+
 	"test saveElementScreenshot": function(browser) {
 		var imageFileName = "test.png";
 

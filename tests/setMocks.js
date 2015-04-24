@@ -42,3 +42,4 @@ monkeyPatchedMSC.mockHTMLResponse('/waitForAttribute', "html/attribute.html");
 monkeyPatchedMSC.mockHTMLResponse('/waitForText', "html/text.html");
 monkeyPatchedMSC.mockHTMLResponse('/waitForTitle', "html/title.html");
 monkeyPatchedMSC.mockHTMLResponse('/saveElementScreenshot', "html/screenshot.html");
+monkeyPatchedMSC.mockHTMLResponse('/children', "html/children.html");
