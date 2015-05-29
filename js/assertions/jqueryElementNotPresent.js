@@ -24,6 +24,9 @@ exports.assertion = function(selector, msg) {
     return !value;
   };
   this.value = function(result) {
+    if (!result) {
+      return false;
+    }
     return result.value;
   };
   this.command = function(callback) {
