@@ -1,5 +1,18 @@
 #!/usr/bin/env bash
 
+if ! which coffeelint ; then
+	echo "Coffeelint not installed globally. This is necessary for running tests"
+	echo "npm install coffeelint -g"
+	echo "Please note that nightwatch is also necessary globally"
+	exit 1
+fi
+
+if ! which nightwatch ; then
+        echo "Nightwatch not installed globally. This is necessary for running tests"
+	echo "npm install nightwatch -g"
+        exit 1
+fi
+
 NIGHTWATCH_ENV=${NIGHTWATCH_ENV:-default}
 
 #Lint the coffee files
