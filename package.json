@@ -4,8 +4,7 @@
   "description": "These are some commands and assertion I use when I'm testing with nightwatch.js and selenium.",
   "main": "none",
   "scripts": {
-    "test": "./runTests.sh",
-    "preinstall": "npm install -g gulp coffeelint nightwatch"
+    "test": "./runTests.sh"
   },
   "repository": {
     "type": "git",
@@ -32,7 +31,9 @@
     "gulp-rename": "^1.2.0",
     "gulp-util": "^3.0.4",
     "mockserver-client": "^1.0.3",
-    "selenium-server": "2.45.0"
+    "selenium-server": "2.45.0",
+    "coffeelint": "latest",
+    "nightwatch": "latest"
   },
   "dependencies": {
     "easyimage": "^1.2.2"
