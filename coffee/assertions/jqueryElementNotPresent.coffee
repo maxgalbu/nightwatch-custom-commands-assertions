@@ -23,6 +23,7 @@ exports.assertion = (selector, msg) ->
 		return !value;
 
 	this.value = (result) ->
+		return false if !result;
 		return result.value;
 	
 	this.command = (callback) ->
