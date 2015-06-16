@@ -3,7 +3,7 @@ var easyimg = require("easyimage");
 var baseurl = "http://localhost:9999";
 
 module.exports = {
-	/*"test elementHasChildren": function(browser) {
+	"test elementHasChildren": function(browser) {
 		return browser
 			.url(baseurl+"/children")
 			.assert.elementHasChildren(".myclass")
@@ -33,7 +33,7 @@ module.exports = {
 				});
 			})
 			.end();
-	},*/
+	},
 
 	"test waitForJqueryElement": function(browser) {
 		browser.globals.waitForConditionTimeout = 5000;
@@ -46,7 +46,7 @@ module.exports = {
 			.end();
 	},
 
-	/*"test waitForAttribute": function(browser) {
+	"test waitForAttribute": function(browser) {
 		browser.globals.waitForConditionTimeout = 5000;
 		
 		return browser
@@ -147,5 +147,5 @@ module.exports = {
 			.pause(200)
 			.assert.visible("#div")
 			.end();
-	},*/
+	},
 };
