@@ -1,6 +1,6 @@
 {
   "name": "nightwatch-custom-commands-assertions",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "These are some commands and assertion I use when I'm testing with nightwatch.js and selenium.",
   "main": "none",
   "scripts": {
