@@ -8,9 +8,9 @@ if ! which coffeelint ; then
 fi
 
 if ! which nightwatch ; then
-        echo "Nightwatch not installed globally. This is necessary for running tests"
+	echo "Nightwatch not installed globally. This is necessary for running tests"
 	echo "npm install nightwatch -g"
-        exit 1
+	exit 1
 fi
 
 NIGHTWATCH_ENV=${NIGHTWATCH_ENV:-default}
