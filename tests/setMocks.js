@@ -12,17 +12,20 @@ function monkeyPatch(mockSrvClnt)
 		}
 
 		mockSrvClnt.mockAnyResponse({
-			'httpRequest': {
-				'method': 'GET',
-				'path': uri,
+			httpRequest: {
+				method: 'GET',
+				path: uri,
 			},
-			'httpResponse': {
-				'statusCode': 200,
-				'body': fs.readFileSync(filePath, {encoding: "utf8"}),
-				'headers': [{
-					"name": "Content-Type",
-					"values": ["text/html; charset=utf-8"]
+			httpResponse: {
+				statusCode: 200,
+				body: fs.readFileSync(filePath, {encoding: "utf8"}),
+				headers: [{
+					name: "Content-Type",
+					values: ["text/html; charset=utf-8"]
 				}],
+			},
+			times: {
+				unlimited: true
 			}
 		});
 	};
