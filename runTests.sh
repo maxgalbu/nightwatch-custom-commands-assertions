@@ -20,7 +20,7 @@ coffeelint -r coffee/
 status_coffeelint=$?
 
 #Run background jobs
-java -jar tests/mockserver-netty-3.9.1-jar-with-dependencies.jar -serverPort 9999 > /dev/null 2>&1 &
+java -Droot.logLevel=OFF -Dmockserver.logLevel=OFF -jar tests/mockserver-netty-3.9.17-jar-with-dependencies.jar -serverPort 9999 > /dev/null 2>&1 &
 sleep 3
 
 cd tests
