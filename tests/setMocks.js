@@ -31,6 +31,7 @@ function monkeyPatch(mockSrvClnt)
 }
 
 monkeyPatchedMSC = monkeyPatch(mockServerClient("localhost", 9999));
+monkeyPatchedMSC.mockHTMLResponse('/pageObjects', "html/pageObjects.html");
 monkeyPatchedMSC.mockHTMLResponse('/urlMatch', "html/urlMatch.html");
 monkeyPatchedMSC.mockHTMLResponse('/jqueryClick', "html/jqueryClick.html");
 monkeyPatchedMSC.mockHTMLResponse('/jqueryElement', "html/jqueryElement.html");

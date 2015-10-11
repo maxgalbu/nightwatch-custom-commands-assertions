@@ -3,6 +3,16 @@ var easyimg = require("easyimage");
 var baseurl = "http://localhost:9999";
 
 module.exports = {
+	"test page objects": function(browser) {
+		var pageObject = browser.page.test();
+
+		pageObject.navigate()
+			.jqueryClick("@thatButton")
+			.assert.visible("#div");
+
+		browser.end();
+	},
+
 	"test elementHasChildren": function(browser) {
 		return browser
 			.url(baseurl+"/children")

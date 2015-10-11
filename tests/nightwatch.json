@@ -3,6 +3,7 @@
 	"output_folder": false,
 	"custom_commands_path": "../js/commands",
 	"custom_assertions_path": "../js/assertions",
+	"page_objects_path": "./page_objects",
 	
 	"selenium": {
 		"start_process": true,
