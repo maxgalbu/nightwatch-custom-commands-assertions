@@ -8,7 +8,8 @@ module.exports = {
 
 		pageObject.navigate()
 			.jqueryClick("@thatButton")
-			.assert.visible("#div");
+			.assert.visible("#div")
+			.assert.elementHasChildren("@thirdDiv");
 
 		browser.end();
 	},
