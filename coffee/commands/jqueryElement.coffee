@@ -15,11 +15,17 @@
  * @param {Function} callback - function that will be called with the element as argument
 ###
 
+#=include ../getMultipleSelectors.coffee
+
 module.exports.command = (selector, callback) ->
+	selector = getMultipleSelectors(selector)
 	params = [selector];
 	
 	execute = (selector) ->
-		return $(selector).get(0);
+		#=include ../getElementFromSelector.coffee
+
+		element = getElementFromSelector(selector, jquery: true);
+		return element.get(0);
 	execcallback = (result) =>
 		if callback
 			callback.call(this, result.value);

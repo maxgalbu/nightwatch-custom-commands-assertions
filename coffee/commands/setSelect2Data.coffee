@@ -11,12 +11,18 @@
  * @param {Function} [callback] - function that will be called after the element's value has been set
 ###
 
+#=include ../getMultipleSelectors.coffee
+
 module.exports.command = (selector, data, callback) ->
+	selector = getMultipleSelectors(selector)
 	params = [selector, data];
 	
 	execute = (selector, data) ->
-		$(selector).select2("data", data);
-		$(selector).trigger("change");
+		#=include ../getElementFromSelector.coffee
+
+		element = getElementFromSelector(selector, jquery: true);
+		element.select2("data", data);
+		element.trigger("change");
 		return true;
 	execcallback = (result) =>
 		if callback

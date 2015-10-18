@@ -11,11 +11,16 @@
  * @param {Function} [callback] - function that will be called after the element is clicked
 ###
 
+#=include ../getMultipleSelectors.coffee
+
 module.exports.command = (selector, callback) ->
+	selector = getMultipleSelectors(selector)
 	params = [selector];
 	
 	execute = (selector) ->
-		element = $(selector);
+		#=include ../getElementFromSelector.coffee
+
+		element = getElementFromSelector(selector, jquery: true);
 		element[0].click() if element.length
 		return true;
 	execcallback = =>

@@ -6,6 +6,10 @@
 			$("#button").on("click", function() {
 				$("#div").show();
 			});
+
+			$("#navbar .homebutton").on("click", function() {
+				$("#testsection").show();
+			});
 		});
 	</script>
 </head>
@@ -16,5 +20,12 @@
 		<button type="button" id="button">click me</button>
 		<div id="div" style="display:none">invisible</div>
 	</div>
+
+	<div id="navbar">
+		<div class="homebutton">Home</div>
+		<div class="otherbutton">Other</div>
+	</div>
+
+	<div id="testsection" style="display:none">test</div>
 </body>
 </html>

@@ -11,12 +11,18 @@
  * @param {Function} [callback] - function that will be called after the change event is triggered
 ###
 
+#=include ../getMultipleSelectors.coffee
+
 module.exports.command = (selector, value, callback) ->
+	selector = getMultipleSelectors(selector)
 	params = [selector, value];
 	
 	execute = (selector, value) ->
-		$(selector).val(value);
-		$(selector).trigger("change");
+		#=include ../getElementFromSelector.coffee
+
+		element = getElementFromSelector(selector, jquery: true);
+		element.val(value);
+		element.trigger("change");
 		return true;
 	execcallback = (result) =>
 		if callback

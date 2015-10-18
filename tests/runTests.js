@@ -4,12 +4,50 @@ var baseurl = "http://localhost:9999";
 
 module.exports = {
 	"test page objects": function(browser) {
-		var pageObject = browser.page.test();
+		browser.url(baseurl+"/pageObjects");
 
-		pageObject.navigate()
+		var pageObject = browser.page.test();
+		pageObject
 			.jqueryClick("@thatButton")
 			.assert.visible("#div")
 			.assert.elementHasChildren("@thirdDiv");
+
+		browser.end();
+	},
+
+	"test page objects with sections": function(browser) {
+		var pageObject = browser.page.test();
+
+		browser.url(baseurl+"/jqueryClick");
+		pageObject.section.jqueryClick.jqueryClick("@element")
+		browser.assert.visible("#div");
+
+		browser.url(baseurl+"/setSelect2Data");
+		pageObject.section.select2.setSelect2Data("@element", {id:1, text:"ciao"})
+		browser.assert.value("input[name=select2]", "1")
+
+		browser.url(baseurl+"/setSelect2Value");
+		pageObject.section.select2.setSelect2Value("@element", "1")
+		browser.assert.value("input[name=select2]", "1");
+
+		browser.url(baseurl+"/setValueAndTrigger");
+		pageObject.section.trigger.setValueAndTrigger("@element", "1")
+		browser.assert.visible("#div");
+
+		browser.url(baseurl+"/children");
+		pageObject.section.children
+			.assert.elementHasChildren("@element")
+			.assert.elementHasChildren("@element", "li")
+			.assert.elementHasChildren("@element", "@element2");
+
+		browser.url(baseurl+"/nochildren");
+		pageObject.section.children
+			.assert.elementHasNoChildren("@element")
+			.assert.elementHasNoChildren("@element");
+
+		browser.url(baseurl+"/waitForJqueryElement");
+		pageObject.section.jqueryWait
+			.waitForJqueryElement("@element");
 
 		browser.end();
 	},

@@ -20,6 +20,8 @@
 
 util = require('util');
 
+#=include ../getMultipleSelectors.coffee
+
 exports.assertion = (selector, children_selectors = "", msg = null) ->
 	@message = msg;
 	if !@message
@@ -36,17 +38,20 @@ exports.assertion = (selector, children_selectors = "", msg = null) ->
 		return !!result.value;
 	
 	this.command = (callback) ->
+		selector = getMultipleSelectors(selector)
+		children_selectors = getMultipleSelectors(children_selectors)
 		params = [selector, children_selectors];
 		execute = (selector, children_selectors) ->
-			elements = document.querySelectorAll(selector);
-			if !elements.length
-				return false;
+			#=include ../getElementFromSelector.coffee
 
-			element = elements[0];
+			element = getElementFromSelector(selector);
+			if !element
+				return false
+			
 			if !children_selectors
 				return element.children.length != 0;
 			else
-				children = element.querySelectorAll(children_selectors);
+				children = getElementFromSelector(children_selectors, return_all: true, parent_element: element);
 				return children.length != 0;
 		execcallback = (result) =>
 			if callback
