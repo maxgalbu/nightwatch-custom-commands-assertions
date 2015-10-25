@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/maxgalbu/nightwatch-custom-commands-assertions",
   "devDependencies": {
-    "chromedriver": "~2.10.0-1",
+    "chromedriver": "~2.19",
     "coffeelint": "latest",
     "grunt": "^0.4.5",
     "gulp": "^3.8.11",
