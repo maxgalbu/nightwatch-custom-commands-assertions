@@ -4,14 +4,17 @@ var fs = require('fs'),
 
 function monkeyPatch(mockSrvClnt)
 {
-	mockSrvClnt.mockHTMLResponse = function(uri, filePath) {
-		if (!fs.existsSync(filePath))
-		{
+	mockSrvClnt.mockHTMLResponse = function(uri, filePath, options) {
+		if (!options) {
+			options = {};
+		}
+
+		if (!fs.existsSync(filePath)) {
 			console.log("File doesn't exist: "+filePath);
 			return;
 		}
 
-		mockSrvClnt.mockAnyResponse({
+		var params = {
 			httpRequest: {
 				method: 'GET',
 				path: uri,
@@ -27,7 +30,16 @@ function monkeyPatch(mockSrvClnt)
 			times: {
 				unlimited: true
 			}
-		});
+		};
+
+		if (options.delay) {
+			params.httpResponse.delay = {
+                timeUnit: 'MILLISECONDS',
+                value: options.delay
+            };
+		}
+
+		mockSrvClnt.mockAnyResponse(params);
 	};
 
 	return mockSrvClnt;
@@ -49,3 +61,7 @@ monkeyPatchedMSC.mockHTMLResponse('/waitForTitle', "html/title.html");
 monkeyPatchedMSC.mockHTMLResponse('/saveElementScreenshot', "html/screenshot.html");
 monkeyPatchedMSC.mockHTMLResponse('/children', "html/children.html");
 monkeyPatchedMSC.mockHTMLResponse('/nochildren', "html/nochildren.html");
+monkeyPatchedMSC.mockHTMLResponse('/waitForAjaxRequest', "html/ajax.html");
+monkeyPatchedMSC.mockHTMLResponse('/delayedAjax', "html/ajax.json", {
+	delay: 3000
+});

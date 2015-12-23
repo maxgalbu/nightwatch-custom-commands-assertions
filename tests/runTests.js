@@ -19,19 +19,19 @@ module.exports = {
 		var pageObject = browser.page.test();
 
 		browser.url(baseurl+"/jqueryClick");
-		pageObject.section.jqueryClick.jqueryClick("@element")
+		pageObject.section.jqueryClick.jqueryClick("@element");
 		browser.assert.visible("#div");
 
 		browser.url(baseurl+"/setSelect2Data");
-		pageObject.section.select2.setSelect2Data("@element", {id:1, text:"ciao"})
-		browser.assert.value("input[name=select2]", "1")
+		pageObject.section.select2.setSelect2Data("@element", {id:1, text:"ciao"});
+		browser.assert.value("input[name=select2]", "1");
 
 		browser.url(baseurl+"/setSelect2Value");
-		pageObject.section.select2.setSelect2Value("@element", "1")
+		pageObject.section.select2.setSelect2Value("@element", "1");
 		browser.assert.value("input[name=select2]", "1");
 
 		browser.url(baseurl+"/setValueAndTrigger");
-		pageObject.section.trigger.setValueAndTrigger("@element", "1")
+		pageObject.section.trigger.setValueAndTrigger("@element", "1");
 		browser.assert.visible("#div");
 
 		browser.url(baseurl+"/children");
@@ -195,6 +195,14 @@ module.exports = {
 			.setValueAndTrigger("#textinput", "1")
 			.pause(200)
 			.assert.visible("#div")
+			.end();
+	},
+
+	"test waitForJqueryAjaxRequest": function(browser) {
+		return browser
+			.url(baseurl+"/waitForAjaxRequest")
+			.waitForJqueryAjaxRequest(5000)
+			.assert.containsText("#div", "something else")
 			.end();
 	},
 };
