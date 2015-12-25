@@ -1,7 +1,15 @@
 module.exports = {
 	elements: {
 		thirdDiv: 'div:nth-child(3)',
-		thatButton: 'div:eq(2) #button'
+		thatButton: 'div:eq(2) #button',
+		waitForCss: {
+			selector: '#div',
+			locateStrategy: "css",
+		},
+		waitForXpath: {
+			selector: '//div[@id="div"]',
+			locateStrategy: "xpath",
+		},
 	},
 	sections: {
 		menu: {

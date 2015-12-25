@@ -23,12 +23,24 @@ events = require('events');
 class WaitForText extends events.EventEmitter
 	timeoutRetryInMilliseconds: 100
 	defaultTimeoutInMilliseconds: 5000
+	locateStrategy: "css"
 
 	constructor: ->
 		super;
 		@startTimeInMilliseconds = null;
 
+	restoreLocateStrategy: ->
+		@api.useXpath() if @locateStrategy == "xpath"
+		@api.useCss() if @locateStrategy == "css"
+
 	command: (elementSelector, checker, timeoutInMilliseconds) ->
+		#Save the origian locate strategy, because if this command is used with
+		#page objects, the "checker" function of this command is wrapped with another
+		#function which resets the locate strategy after the function is called,
+		#but since the function is called many times, from the second one the locateStrategy
+		#is wrong
+		@locateStrategy = @client.locateStrategy;
+
 		@startTimeInMilliseconds = new Date().getTime();
 
 		if typeof timeoutInMilliseconds != 'number'
@@ -51,6 +63,9 @@ class WaitForText extends events.EventEmitter
 		return this;
 
 	check: (elementSelector, checker, callback, maxTimeInMilliseconds) ->
+		#Restore the origian locate strategy
+		@restoreLocateStrategy();
+
 		@api.getText(elementSelector, (result) =>
 			now = new Date().getTime();
 			if result.status == 0 && checker(result.value)

@@ -4,13 +4,43 @@ var baseurl = "http://localhost:9999";
 
 module.exports = {
 	"test page objects": function(browser) {
-		browser.url(baseurl+"/pageObjects");
-
 		var pageObject = browser.page.test();
+
+		browser.url(baseurl+"/pageObjects");
 		pageObject
 			.jqueryClick("@thatButton")
 			.assert.visible("#div")
 			.assert.elementHasChildren("@thirdDiv");
+		
+		//Test using css selector
+		browser.url(baseurl+"/waitForText");
+		pageObject.waitForText("@waitForCss", function (text) {
+			return text === "something else";
+		});
+
+		//test using xpath selector
+		browser.url(baseurl+"/waitForText");
+		pageObject.waitForText("@waitForXpath", function (text) {
+			return text === "something else";
+		});
+
+		//Test using css selector
+		browser.url(baseurl+"/waitForAttribute");
+		pageObject.waitForAttribute("@waitForCss", "class", function (divclass) {
+			return divclass === "myclass";
+		});
+
+		//test using xpath selector
+		browser.url(baseurl+"/waitForAttribute");
+		pageObject.waitForAttribute("@waitForXpath", "class", function (divclass) {
+			return divclass === "myclass";
+		});
+
+		//test if locatestrategy is restored correctly
+		browser.url(baseurl+"/waitForText");
+		browser.waitForText("#div", function (text) {
+			return text === "something else";
+		});
 
 		browser.end();
 	},
@@ -112,6 +142,11 @@ module.exports = {
 		return browser
 			.url(baseurl+"/waitForText")
 			.waitForText("#div", function (text) {
+				return text === "something else";
+			})
+			.url(baseurl+"/waitForText")
+			.useXpath()
+			.waitForText("//div[@id='div']", function (text) {
 				return text === "something else";
 			})
 			.end();

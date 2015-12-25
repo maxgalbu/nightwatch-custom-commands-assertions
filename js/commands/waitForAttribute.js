@@ -33,12 +33,24 @@ WaitForAttribute = (function(superClass) {
 
   WaitForAttribute.prototype.defaultTimeoutInMilliseconds = 5000;
 
+  WaitForAttribute.prototype.locateStrategy = "css";
+
   function WaitForAttribute() {
     WaitForAttribute.__super__.constructor.apply(this, arguments);
     this.startTimeInMilliseconds = null;
   }
 
+  WaitForAttribute.prototype.restoreLocateStrategy = function() {
+    if (this.locateStrategy === "xpath") {
+      this.api.useXpath();
+    }
+    if (this.locateStrategy === "css") {
+      return this.api.useCss();
+    }
+  };
+
   WaitForAttribute.prototype.command = function(elementSelector, attribute, checker, timeoutInMilliseconds) {
+    this.locateStrategy = this.client.locateStrategy;
     this.startTimeInMilliseconds = new Date().getTime();
     if (typeof timeoutInMilliseconds !== 'number') {
       timeoutInMilliseconds = this.api.globals.waitForConditionTimeout;
@@ -62,6 +74,7 @@ WaitForAttribute = (function(superClass) {
   };
 
   WaitForAttribute.prototype.check = function(elementSelector, attribute, checker, callback, maxTimeInMilliseconds) {
+    this.restoreLocateStrategy();
     return this.api.getAttribute(elementSelector, attribute, (function(_this) {
       return function(result) {
         var now;

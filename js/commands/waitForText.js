@@ -32,12 +32,24 @@ WaitForText = (function(superClass) {
 
   WaitForText.prototype.defaultTimeoutInMilliseconds = 5000;
 
+  WaitForText.prototype.locateStrategy = "css";
+
   function WaitForText() {
     WaitForText.__super__.constructor.apply(this, arguments);
     this.startTimeInMilliseconds = null;
   }
 
+  WaitForText.prototype.restoreLocateStrategy = function() {
+    if (this.locateStrategy === "xpath") {
+      this.api.useXpath();
+    }
+    if (this.locateStrategy === "css") {
+      return this.api.useCss();
+    }
+  };
+
   WaitForText.prototype.command = function(elementSelector, checker, timeoutInMilliseconds) {
+    this.locateStrategy = this.client.locateStrategy;
     this.startTimeInMilliseconds = new Date().getTime();
     if (typeof timeoutInMilliseconds !== 'number') {
       timeoutInMilliseconds = this.api.globals.waitForConditionTimeout;
@@ -61,6 +73,7 @@ WaitForText = (function(superClass) {
   };
 
   WaitForText.prototype.check = function(elementSelector, checker, callback, maxTimeInMilliseconds) {
+    this.restoreLocateStrategy();
     return this.api.getText(elementSelector, (function(_this) {
       return function(result) {
         var now;
