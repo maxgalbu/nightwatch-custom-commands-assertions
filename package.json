@@ -33,7 +33,7 @@
     "gulp-rename": "^1.2.0",
     "gulp-util": "^3.0.4",
     "mockserver-client": "^1.0.3",
-    "nightwatch": "latest",
+    "nightwatch": "git://github.com/maxgalbu/nightwatch#maxgalbu-patch-1",
     "selenium-server": "2.45.0"
   },
   "dependencies": {
