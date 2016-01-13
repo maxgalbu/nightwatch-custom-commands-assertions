@@ -99,6 +99,10 @@ module.exports = {
 	},
 
 	"test saveElementScreenshot": function(browser) {
+		if (process.env.NIGHTWATCH_ENV == "chrome") {
+			return;
+		}
+		
 		var imageFileName = "test.png";
 
 		return browser
