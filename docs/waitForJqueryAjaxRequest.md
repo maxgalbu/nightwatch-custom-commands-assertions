@@ -8,7 +8,7 @@ maxTimeInMilliseconds (which fails the test).
 Nightwatch uses the Node.js EventEmitter pattern to handle asynchronous code so this command is also an EventEmitter.
 ### Examples:
 
-    browser.WaitForJqueryAjaxRequest();
+    browser.waitForJqueryAjaxRequest();
 
 Author: maxgalbu
 
