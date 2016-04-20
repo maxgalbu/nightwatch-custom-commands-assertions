@@ -8,7 +8,7 @@ events = require('events');
  *
  * h3 Examples:
  *
- *     browser.WaitForJqueryAjaxRequest();
+ *     browser.waitForJqueryAjaxRequest();
  *
  * @author maxgalbu
  * @param {Integer} [timeoutInMilliseconds] - timeout of this wait commands in milliseconds
