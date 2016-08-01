@@ -149,6 +149,7 @@ module.exports = {
 			.waitForText("//div[@id='div']", function (text) {
 				return text === "something else";
 			})
+			.useCss()
 			.end();
 	},
 
