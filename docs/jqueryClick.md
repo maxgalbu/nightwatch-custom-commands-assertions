@@ -1,6 +1,6 @@
 
 
-<!-- Start coffee/commands/jqueryClick.coffee -->
+<!-- Start coffee/commands/jqueryClick.js -->
 
 Clicks an element using jquery selectors.
 ### Examples:
@@ -15,5 +15,5 @@ Author: maxgalbu
 * **String** *selector* - jQuery selector for the element
 * **Function** *[callback]* - function that will be called after the element is clicked
 
-<!-- End coffee/commands/jqueryClick.coffee -->
+<!-- End coffee/commands/jqueryClick.js -->
 

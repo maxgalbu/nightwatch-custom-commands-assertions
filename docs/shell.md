@@ -1,6 +1,6 @@
 
 
-<!-- Start coffee/commands/shell.coffee -->
+<!-- Start coffee/commands/shell.js -->
 
 Execute a command on the shell
 ### Examples:
@@ -13,5 +13,5 @@ Author: maxgalbu
 
 * **String** *command* to execute on the shell
 
-<!-- End coffee/commands/shell.coffee -->
+<!-- End coffee/commands/shell.js -->
 

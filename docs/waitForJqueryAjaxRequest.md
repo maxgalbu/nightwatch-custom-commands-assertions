@@ -1,6 +1,8 @@
 
 
-<!-- Start coffee/commands/waitForJqueryAjaxRequest.coffee -->
+<!-- Start coffee/commands/waitForJqueryAjaxRequest.js -->
+
+## WaitForJqueryAjaxRequest
 
 This custom command allows us to wait for every AJAX request made by jquery to be completed
 It checks for jQuery.active every 100ms until either it evaluates to true or it reaches
@@ -16,5 +18,5 @@ Author: maxgalbu
 
 * **Integer** *[timeoutInMilliseconds]* - timeout of this wait commands in milliseconds
 
-<!-- End coffee/commands/waitForJqueryAjaxRequest.coffee -->
+<!-- End coffee/commands/waitForJqueryAjaxRequest.js -->
 

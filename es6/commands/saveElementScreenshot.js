@@ -1,4 +1,4 @@
-###*
+/**
  * Take a screenshot of the requested element
  *
  * This command requires ImageMagick installed on the system and node-easyimage installed as a npm module. You can install node-easyimage with:
@@ -23,37 +23,39 @@
  * @author maxgalbu
  * @param {String} elementSelector - css/xpath selector for the element
  * @param {Function} fileName - file path where the screenshot is saved
-###
+*/
 
-events = require('events');
-easyimg = require('easyimage');
+import events from 'events';
+import easyimg from 'easyimage';
 
-class SaveElementScreenshotAction extends events.EventEmitter
-	command: (elementSelector, fileName) ->
-		@api.getElementSize(elementSelector, (sizeResult) =>
-			@api.getLocation(elementSelector, (locationResult) =>
-				@api.saveScreenshot(fileName, =>
-					@crop(fileName, sizeResult.value, locationResult.value);
-				);
-			);
-		);
+class SaveElementScreenshotAction extends events.EventEmitter {
+	command(elementSelector, fileName) {
+		this.api.getElementSize(elementSelector, sizeResult => {
+			return this.api.getLocation(elementSelector, locationResult => {
+				return this.api.saveScreenshot(fileName, () => {
+					return this.crop(fileName, sizeResult.value, locationResult.value);
+				});
+			});
+		});
 		
 		return this;
+	}
 
-	crop: (fileName, size, location) ->
+	crop(fileName, size, location) {
 		easyimg.crop({
-			src: fileName
-			dst: fileName
-			cropwidth: size.width
-			cropheight: size.height
-			x: location.x
-			y: location.y
+			src: fileName,
+			dst: fileName,
+			cropwidth: size.width,
+			cropheight: size.height,
+			x: location.x,
+			y: location.y,
 			gravity: 'North-West'
 		}).then(
-			(file) => @emit("complete");
-			(err) => console.error(err); @emit("complete");
+			file => this.emit("complete"),
+			err => (console.error(err), this.emit("complete"))
 		);
 
-		return;
+	}
+}
 
-module.exports = SaveElementScreenshotAction;
+export default SaveElementScreenshotAction;

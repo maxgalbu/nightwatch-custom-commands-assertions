@@ -1,9 +1,22 @@
-var WaitForJqueryAjaxRequest, events,
-  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
-  hasProp = {}.hasOwnProperty;
+'use strict';
 
-events = require('events');
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _events = require('events');
+
+var _events2 = _interopRequireDefault(_events);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
  * This custom command allows us to wait for every AJAX request made by jquery to be completed
@@ -17,67 +30,76 @@ events = require('events');
  *
  * @author maxgalbu
  * @param {Integer} [timeoutInMilliseconds] - timeout of this wait commands in milliseconds
- */
+*/
 
-WaitForJqueryAjaxRequest = (function(superClass) {
-  extend(WaitForJqueryAjaxRequest, superClass);
+var WaitForJqueryAjaxRequest = function (_events$EventEmitter) {
+	_inherits(WaitForJqueryAjaxRequest, _events$EventEmitter);
 
-  WaitForJqueryAjaxRequest.prototype.timeoutRetryInMilliseconds = 100;
+	function WaitForJqueryAjaxRequest() {
+		_classCallCheck(this, WaitForJqueryAjaxRequest);
 
-  WaitForJqueryAjaxRequest.prototype.defaultTimeoutInMilliseconds = 5000;
+		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(WaitForJqueryAjaxRequest).call(this));
 
-  function WaitForJqueryAjaxRequest() {
-    WaitForJqueryAjaxRequest.__super__.constructor.apply(this, arguments);
-    this.startTimeInMilliseconds = null;
-  }
+		_this.timeoutRetryInMilliseconds = 100;
+		_this.defaultTimeoutInMilliseconds = 5000;
+		_this.startTimeInMilliseconds = null;
+		return _this;
+	}
 
-  WaitForJqueryAjaxRequest.prototype.command = function(timeoutInMilliseconds) {
-    this.startTimeInMilliseconds = new Date().getTime();
-    if (typeof timeoutInMilliseconds !== 'number') {
-      timeoutInMilliseconds = this.api.globals.waitForConditionTimeout;
-    }
-    if (typeof timeoutInMilliseconds !== 'number') {
-      timeoutInMilliseconds = this.defaultTimeoutInMilliseconds;
-    }
-    this.check((function(_this) {
-      return function(result, loadedTimeInMilliseconds) {
-        var message;
-        if (result) {
-          message = "WaitForJqueryAjaxRequest: AJAX requests finished after " + (loadedTimeInMilliseconds - _this.startTimeInMilliseconds) + " ms.";
-        } else {
-          message = "WaitForJqueryAjaxRequest: AJAX requests not finished in " + timeoutInMilliseconds + " ms.";
-        }
-        _this.client.assertion(result, 'expression false', 'expression true', message, true);
-        return _this.emit('complete');
-      };
-    })(this), timeoutInMilliseconds);
-    return this;
-  };
+	_createClass(WaitForJqueryAjaxRequest, [{
+		key: 'command',
+		value: function command(timeoutInMilliseconds) {
+			var _this2 = this;
 
-  WaitForJqueryAjaxRequest.prototype.check = function(callback, maxTimeInMilliseconds) {
-    var executeFunc;
-    executeFunc = function(selector) {
-      return jQuery.active;
-    };
-    return this.api.execute(executeFunc, [], (function(_this) {
-      return function(result) {
-        var now;
-        now = new Date().getTime();
-        if (result.status === 0 && result.value === 0) {
-          return callback(true, now);
-        } else if (now - _this.startTimeInMilliseconds < maxTimeInMilliseconds) {
-          return setTimeout(function() {
-            return _this.check(callback, maxTimeInMilliseconds);
-          }, _this.timeoutRetryInMilliseconds);
-        } else {
-          return callback(false);
-        }
-      };
-    })(this));
-  };
+			this.startTimeInMilliseconds = new Date().getTime();
 
-  return WaitForJqueryAjaxRequest;
+			if (typeof timeoutInMilliseconds !== 'number') {
+				timeoutInMilliseconds = this.api.globals.waitForConditionTimeout;
+			}
+			if (typeof timeoutInMilliseconds !== 'number') {
+				timeoutInMilliseconds = this.defaultTimeoutInMilliseconds;
+			}
 
-})(events.EventEmitter);
+			this.check(function (result, loadedTimeInMilliseconds) {
+				var message = "";
+				if (result) {
+					message = 'waitForJqueryAjaxRequest: AJAX requests finished after ' + (loadedTimeInMilliseconds - _this2.startTimeInMilliseconds) + ' ms.';
+				} else {
+					message = 'waitForJqueryAjaxRequest: AJAX requests not finished in ' + timeoutInMilliseconds + ' ms.';
+				}
 
-module.exports = WaitForJqueryAjaxRequest;
+				_this2.client.assertion(result, 'expression false', 'expression true', message, true);
+				return _this2.emit('complete');
+			}, timeoutInMilliseconds);
+
+			return this;
+		}
+	}, {
+		key: 'check',
+		value: function check(callback, maxTimeInMilliseconds) {
+			var _this3 = this;
+
+			var executeFunc = function executeFunc(selector) {
+				return jQuery.active;
+			};
+
+			return this.api.execute(executeFunc, [], function (result) {
+				var now = new Date().getTime();
+				if (result.status === 0 && result.value === 0) {
+					return callback(true, now);
+				} else if (now - _this3.startTimeInMilliseconds < maxTimeInMilliseconds) {
+					return setTimeout(function () {
+						return _this3.check(callback, maxTimeInMilliseconds);
+					}, _this3.timeoutRetryInMilliseconds);
+				} else {
+					return callback(false);
+				}
+			});
+		}
+	}]);
+
+	return WaitForJqueryAjaxRequest;
+}(_events2.default.EventEmitter);
+
+exports.default = WaitForJqueryAjaxRequest;
+module.exports = exports['default'];

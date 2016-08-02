@@ -1,4 +1,4 @@
-###*
+/**
  * Returns an element using jquery selectors
  *
  * h3 Examples:
@@ -13,23 +13,27 @@
  * @author maxgalbu
  * @param {String} selector - jQuery selector for the element
  * @param {Function} callback - function that will be called with the element as argument
-###
+*/
 
-#=include ../getMultipleSelectors.coffee
+//=include ../getMultipleSelectors.js
 
-module.exports.command = (selector, callback) ->
-	selector = getMultipleSelectors(selector)
-	params = [selector];
+export function command(selector, callback) {
+	selector = getMultipleSelectors(selector);
+	let params = [selector];
 	
-	execute = (selector) ->
-		#=include ../getElementFromSelector.coffee
+	let execute = function(selector) {
+		//=include ../getElementFromSelector.js
 
-		element = getElementFromSelector(selector, jquery: true);
+		let element = getElementFromSelector(selector, {jquery: true});
 		return element.get(0);
-	execcallback = (result) =>
-		if callback
-			callback.call(this, result.value);
+	};
+	let execcallback = result => {
+		if (callback) {
+			return callback.call(this, result.value);
+		}
+	};
 	
 	this.execute(execute, params, execcallback);
 	
 	return this;
+}

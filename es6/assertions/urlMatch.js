@@ -1,4 +1,4 @@
-###*
+/**
  * Assert that the url matches the regex provided
  *
  * h3 Examples:
@@ -14,21 +14,21 @@
  * @author maxgalbu
  * @param {RegExp} regex - regular expression
  * @param {String} [msg] - output to identify the assertion
-###
+*/
 
-util = require('util');
+import util from 'util';
 
-exports.assertion = (regex, msg) ->
+export function assertion(regex, msg) {
 	this.message = msg || util.format('Testing if the URL match the regex "%s".', regex);
 	this.expected = regex;
 	
-	this.pass = (value) ->
+	this.pass = function(value) {
 		return this.expected.test(value);
+	};
 
-	this.value = (result) ->
-		return result.value;
+	this.value = result => result.value;
 	
-	this.command = (callback) ->
+	this.command = function(callback) {
 		return this.api.url(callback);
-	
-	return;
+	};
+}

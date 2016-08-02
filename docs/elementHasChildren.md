@@ -1,6 +1,6 @@
 
 
-<!-- Start coffee/assertions/elementHasChildren.coffee -->
+<!-- Start coffee/assertions/elementHasChildren.js -->
 
 Assert that the element identified by the selector has children nodes
 that matches the children selectors (if passed)
@@ -22,5 +22,5 @@ Author: maxgalbu
 * **String** *[children_selectors]* - a list of selectors for children nodes
 * **String** *[msg]* - output to identify the assertion
 
-<!-- End coffee/assertions/elementHasChildren.coffee -->
+<!-- End coffee/assertions/elementHasChildren.js -->
 

@@ -1,6 +1,6 @@
 
 
-<!-- Start coffee/assertions/urlMatch.coffee -->
+<!-- Start coffee/assertions/urlMatch.js -->
 
 Assert that the url matches the regex provided
 ### Examples:
@@ -20,5 +20,5 @@ Author: maxgalbu
 * **RegExp** *regex* - regular expression
 * **String** *[msg]* - output to identify the assertion
 
-<!-- End coffee/assertions/urlMatch.coffee -->
+<!-- End coffee/assertions/urlMatch.js -->
 

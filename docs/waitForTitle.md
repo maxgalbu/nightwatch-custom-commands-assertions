@@ -1,6 +1,8 @@
 
 
-<!-- Start coffee/commands/waitForTitle.coffee -->
+<!-- Start coffee/commands/waitForTitle.js -->
+
+## WaitForTitle
 
 This custom command allows us to wait until the value of the page title matches the provided expression
 (aka. the 'checker' function).
@@ -22,5 +24,5 @@ See: https://github.com/beatfactor/nightwatch/issues/246#issuecomment-59461345
 * **Function** *checker* - function that must return true if the title matches your requisite, false otherwise
 * **Integer** *[timeoutInMilliseconds]* - timeout of this wait commands in milliseconds
 
-<!-- End coffee/commands/waitForTitle.coffee -->
+<!-- End coffee/commands/waitForTitle.js -->
 

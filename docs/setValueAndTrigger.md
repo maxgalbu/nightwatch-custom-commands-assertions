@@ -1,6 +1,6 @@
 
 
-<!-- Start coffee/commands/setValueAndTrigger.coffee -->
+<!-- Start coffee/commands/setValueAndTrigger.js -->
 
 Set a value on an `<input>` or a `<select>` and trigger a `change` event
 ### Examples:
@@ -15,5 +15,5 @@ Author: maxgalbu
 * **String** *value* - value of the element to be set
 * **Function** *[callback]* - function that will be called after the change event is triggered
 
-<!-- End coffee/commands/setValueAndTrigger.coffee -->
+<!-- End coffee/commands/setValueAndTrigger.js -->
 

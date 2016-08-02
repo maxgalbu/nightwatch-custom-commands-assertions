@@ -1,6 +1,6 @@
 
 
-<!-- Start coffee/commands/setSelect2Data.coffee -->
+<!-- Start coffee/commands/setSelect2Data.js -->
 
 Set a select2 value using select2("data", object)
 ### Examples:
@@ -15,5 +15,5 @@ Author: maxgalbu
 * **Object** *data* - data of the element to be set (see the example)
 * **Function** *[callback]* - function that will be called after the element's value has been set
 
-<!-- End coffee/commands/setSelect2Data.coffee -->
+<!-- End coffee/commands/setSelect2Data.js -->
 

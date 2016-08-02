@@ -1,9 +1,22 @@
-var WaitForTitle, events,
-  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
-  hasProp = {}.hasOwnProperty;
+'use strict';
 
-events = require('events');
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _events = require('events');
+
+var _events2 = _interopRequireDefault(_events);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
  * This custom command allows us to wait until the value of the page title matches the provided expression
@@ -22,63 +35,72 @@ events = require('events');
  * @see https://github.com/beatfactor/nightwatch/issues/246#issuecomment-59461345
  * @param {Function} checker - function that must return true if the title matches your requisite, false otherwise
  * @param {Integer} [timeoutInMilliseconds] - timeout of this wait commands in milliseconds
- */
+*/
 
-WaitForTitle = (function(superClass) {
-  extend(WaitForTitle, superClass);
+var WaitForTitle = function (_events$EventEmitter) {
+	_inherits(WaitForTitle, _events$EventEmitter);
 
-  WaitForTitle.prototype.timeoutRetryInMilliseconds = 100;
+	function WaitForTitle() {
+		_classCallCheck(this, WaitForTitle);
 
-  WaitForTitle.prototype.defaultTimeoutInMilliseconds = 5000;
+		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(WaitForTitle).call(this));
 
-  function WaitForTitle() {
-    WaitForTitle.__super__.constructor.apply(this, arguments);
-    this.startTimeInMilliseconds = null;
-  }
+		_this.timeoutRetryInMilliseconds = 100;
+		_this.defaultTimeoutInMilliseconds = 5000;
+		_this.startTimeInMilliseconds = null;
+		return _this;
+	}
 
-  WaitForTitle.prototype.command = function(checker, timeoutInMilliseconds) {
-    this.startTimeInMilliseconds = new Date().getTime();
-    if (typeof timeoutInMilliseconds !== 'number') {
-      timeoutInMilliseconds = this.api.globals.waitForConditionTimeout;
-    }
-    if (typeof timeoutInMilliseconds !== 'number') {
-      timeoutInMilliseconds = this.defaultTimeoutInMilliseconds;
-    }
-    this.check(checker, (function(_this) {
-      return function(result, loadedTimeInMilliseconds) {
-        var message;
-        if (result) {
-          message = "waitForTitle: Expression was true after " + (loadedTimeInMilliseconds - _this.startTimeInMilliseconds) + ".";
-        } else {
-          message = "WaitForTitle: " + element + "@" + attribute + ". Expression wasn't true in " + timeoutInMilliseconds + " ms.";
-        }
-        _this.client.assertion(result, 'expression false', 'expression true', message, true);
-        return _this.emit('complete');
-      };
-    })(this), timeoutInMilliseconds);
-    return this;
-  };
+	_createClass(WaitForTitle, [{
+		key: 'command',
+		value: function command(checker, timeoutInMilliseconds) {
+			var _this2 = this;
 
-  WaitForTitle.prototype.check = function(checker, callback, maxTimeInMilliseconds) {
-    return this.api.getTitle((function(_this) {
-      return function(title) {
-        var now;
-        now = new Date().getTime();
-        if (checker(title)) {
-          return callback(true, now);
-        } else if (now - _this.startTimeInMilliseconds < maxTimeInMilliseconds) {
-          return setTimeout(function() {
-            return _this.check(checker, callback, maxTimeInMilliseconds);
-          }, _this.timeoutRetryInMilliseconds);
-        } else {
-          return callback(false);
-        }
-      };
-    })(this));
-  };
+			this.startTimeInMilliseconds = new Date().getTime();
 
-  return WaitForTitle;
+			if (typeof timeoutInMilliseconds !== 'number') {
+				timeoutInMilliseconds = this.api.globals.waitForConditionTimeout;
+			}
+			if (typeof timeoutInMilliseconds !== 'number') {
+				timeoutInMilliseconds = this.defaultTimeoutInMilliseconds;
+			}
 
-})(events.EventEmitter);
+			this.check(checker, function (result, loadedTimeInMilliseconds) {
+				var message = "";
+				if (result) {
+					message = 'waitForTitle: Expression was true after ' + (loadedTimeInMilliseconds - _this2.startTimeInMilliseconds) + '.';
+				} else {
+					message = 'waitForTitle: ' + element + '@' + attribute + '. Expression wasn\'t true in ' + timeoutInMilliseconds + ' ms.';
+				}
 
-module.exports = WaitForTitle;
+				_this2.client.assertion(result, 'expression false', 'expression true', message, true);
+				return _this2.emit('complete');
+			}, timeoutInMilliseconds);
+
+			return this;
+		}
+	}, {
+		key: 'check',
+		value: function check(checker, callback, maxTimeInMilliseconds) {
+			var _this3 = this;
+
+			return this.api.getTitle(function (title) {
+				var now = new Date().getTime();
+				if (checker(title)) {
+					return callback(true, now);
+				} else if (now - _this3.startTimeInMilliseconds < maxTimeInMilliseconds) {
+					return setTimeout(function () {
+						return _this3.check(checker, callback, maxTimeInMilliseconds);
+					}, _this3.timeoutRetryInMilliseconds);
+				} else {
+					return callback(false);
+				}
+			});
+		}
+	}]);
+
+	return WaitForTitle;
+}(_events2.default.EventEmitter);
+
+exports.default = WaitForTitle;
+module.exports = exports['default'];

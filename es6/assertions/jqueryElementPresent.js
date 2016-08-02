@@ -1,4 +1,4 @@
-###*
+/**
  * Assert that the element identified by the jquery selector exists in the DOM.
  * ***Requires jqueryElement command***
  *
@@ -11,24 +11,26 @@
  * @author maxgalbu
  * @param {String} selector - jQuery selector
  * @param {String} [msg] - output to identify the assertion
-###
+*/
 
-util = require('util');
+import util from 'util';
 
-exports.assertion = (selector, msg) ->
+export function assertion(selector, msg) {
 	this.message = msg || util.format('Testing if element <%s> is present.', selector);
 	this.expected = 'present';
 	
-	this.pass = (value) ->
-		return !!value;
+	this.pass = value => !!value;
 
-	this.value = (result) ->
-		value = null;
-		if result
+	this.value = function(result) {
+		let value = null;
+		if (result) {
 			value = !!result;
+		}
 		return value;
+	};
 	
-	this.command = (callback) ->
+	this.command = function(callback) {
 		return this.api.jqueryElement(selector, callback);
+	};
 	
-	return;
+}
