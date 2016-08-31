@@ -1,6 +1,6 @@
 
 
-<!-- Start coffee/assertions/jqueryElementNotPresent.js -->
+<!-- Start es6/assertions/jqueryElementNotPresent.js -->
 
 assert that the element identified by the jquery selector does NOT exist in the DOM.
 ***Requires jqueryElement command***
@@ -17,5 +17,5 @@ Author: maxgalbu
 * **String** *selector* - jQuery selector
 * **String** *[msg]* - output to identify the assertion
 
-<!-- End coffee/assertions/jqueryElementNotPresent.js -->
+<!-- End es6/assertions/jqueryElementNotPresent.js -->
 

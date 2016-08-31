@@ -1,8 +1,8 @@
 
 
-<!-- Start coffee/commands/waitForAttribute.js -->
+<!-- Start es6/commands/waitForAttribute.js -->
 
-## WaitForAttribute
+## WaitForAttribute 
 
 This custom command allows us to locate an HTML element on the page and then wait until the value of a
 specified attribute matches the provided expression (aka. the 'checker' function).
@@ -26,5 +26,5 @@ See: https://github.com/beatfactor/nightwatch/issues/246#issuecomment-59461345
 * **Function** *checker* - function that must return true if the attribute matches, false otherwise
 * **Integer** *[timeoutInMilliseconds]* - timeout of this wait commands in milliseconds
 
-<!-- End coffee/commands/waitForAttribute.js -->
+<!-- End es6/commands/waitForAttribute.js -->
 

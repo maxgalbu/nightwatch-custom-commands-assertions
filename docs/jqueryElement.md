@@ -1,6 +1,6 @@
 
 
-<!-- Start coffee/commands/jqueryElement.js -->
+<!-- Start es6/commands/jqueryElement.js -->
 
 Returns an element using jquery selectors
 ### Examples:
@@ -19,5 +19,5 @@ Author: maxgalbu
 * **String** *selector* - jQuery selector for the element
 * **Function** *callback* - function that will be called with the element as argument
 
-<!-- End coffee/commands/jqueryElement.js -->
+<!-- End es6/commands/jqueryElement.js -->
 

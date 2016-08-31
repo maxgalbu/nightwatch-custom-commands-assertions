@@ -1,6 +1,6 @@
 
 
-<!-- Start coffee/assertions/jqueryElementPresent.js -->
+<!-- Start es6/assertions/jqueryElementPresent.js -->
 
 Assert that the element identified by the jquery selector exists in the DOM.
 ***Requires jqueryElement command***
@@ -17,5 +17,5 @@ Author: maxgalbu
 * **String** *selector* - jQuery selector
 * **String** *[msg]* - output to identify the assertion
 
-<!-- End coffee/assertions/jqueryElementPresent.js -->
+<!-- End es6/assertions/jqueryElementPresent.js -->
 

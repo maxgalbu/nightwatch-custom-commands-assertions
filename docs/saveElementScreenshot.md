@@ -1,6 +1,6 @@
 
 
-<!-- Start coffee/commands/saveElementScreenshot.js -->
+<!-- Start es6/commands/saveElementScreenshot.js -->
 
 Take a screenshot of the requested element
 
@@ -29,5 +29,5 @@ Author: maxgalbu
 * **String** *elementSelector* - css/xpath selector for the element
 * **Function** *fileName* - file path where the screenshot is saved
 
-<!-- End coffee/commands/saveElementScreenshot.js -->
+<!-- End es6/commands/saveElementScreenshot.js -->
 

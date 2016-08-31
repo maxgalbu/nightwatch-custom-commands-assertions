@@ -1,6 +1,6 @@
 
 
-<!-- Start coffee/commands/setSelect2Value.js -->
+<!-- Start es6/commands/setSelect2Value.js -->
 
 Set a select2 value using select2("value", string/number)
 ### Examples:
@@ -15,5 +15,5 @@ Author: maxgalbu
 * **Mixed** *value* - value of the element to be set
 * **Function** *[callback]* - function that will be called after the element's value has been set
 
-<!-- End coffee/commands/setSelect2Value.js -->
+<!-- End es6/commands/setSelect2Value.js -->
 

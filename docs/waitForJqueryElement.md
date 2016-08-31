@@ -1,8 +1,8 @@
 
 
-<!-- Start coffee/commands/waitForJqueryElement.js -->
+<!-- Start es6/commands/waitForJqueryElement.js -->
 
-## WaitForJqueryElement
+## WaitForJqueryElement 
 
 This custom command allows us to locate an HTML element on the page and then wait until the value of a
 specified attribute matches the provided expression (aka. the 'checker' function).
@@ -22,5 +22,5 @@ Author: maxgalbu
 * **String** *elementSelector* - jquery selector for the element
 * **Integer** *[timeoutInMilliseconds]* - timeout of this wait commands in milliseconds
 
-<!-- End coffee/commands/waitForJqueryElement.js -->
+<!-- End es6/commands/waitForJqueryElement.js -->
 
