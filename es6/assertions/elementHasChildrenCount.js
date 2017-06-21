@@ -27,7 +27,7 @@ export function assertion(selector, children_count, children_selectors = "", msg
 	this.message = msg;
 	if (!this.message) {
 		if (children_selectors)
-			this.message = util.format('Testing if element <%s> has %d child nodes that matches these selectors: \'%s\'', 
+			this.message = util.format('Testing if element <%s> has %d child nodes that matches these selectors: \'%s\'',
 				selector, children_count, children_selectors);
 		else
 			this.message = util.format('Testing if element <%s> has %d child nodes', selector, children_count);
@@ -39,7 +39,10 @@ export function assertion(selector, children_count, children_selectors = "", msg
 	};
 
 	this.value = (result) => {
-		return !!result.value;
+		if (result.value.error) {
+			console.error(result.value.message);
+		}
+		return result.value == children_count;
 	};
 	
 	this.command = (callback) => {
@@ -49,16 +52,16 @@ export function assertion(selector, children_count, children_selectors = "", msg
 		let execute = (selector, children_selectors) => {
 			//=include ../getElementFromSelector.js
 
-			element = getElementFromSelector(selector);
+			let element = getElementFromSelector(selector);
 			if (!element) {
-				return false;
+				return -1;
 			}
 			
 			if (!children_selectors) {
-				return element.children.length === children_count;
+				return element.children.length;
 			} else {
-				children = getElementFromSelector(children_selectors, {return_all: true, parent_element: element});
-				return children.length === children_count;
+				let children = getElementFromSelector(children_selectors, {return_all: true, parent_element: element});
+				return children.length;
 			}
 		};
 		let execcallback = (result) => {

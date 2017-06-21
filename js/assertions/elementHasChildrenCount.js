@@ -64,7 +64,10 @@ function assertion(selector, children_count) {
 	};
 
 	this.value = function (result) {
-		return !!result.value;
+		if (result.value.error) {
+			console.error(result.value.message);
+		}
+		return result.value == children_count;
 	};
 
 	this.command = function (callback) {
@@ -120,16 +123,16 @@ function assertion(selector, children_count) {
 				return null;
 			};
 
-			element = getElementFromSelector(selector);
+			var element = getElementFromSelector(selector);
 			if (!element) {
-				return false;
+				return -1;
 			}
 
 			if (!children_selectors) {
-				return element.children.length === children_count;
+				return element.children.length;
 			} else {
-				children = getElementFromSelector(children_selectors, { return_all: true, parent_element: element });
-				return children.length === children_count;
+				var children = getElementFromSelector(children_selectors, { return_all: true, parent_element: element });
+				return children.length;
 			}
 		};
 		var execcallback = function execcallback(result) {
