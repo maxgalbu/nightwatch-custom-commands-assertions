@@ -4,7 +4,8 @@ var gulp = require("gulp"),
 	plumber = require("gulp-plumber"),
 	markdox = require("gulp-markdox"),
 	rename = require("gulp-rename"),
-	include = require("gulp-include");
+	include = require("gulp-include"),
+	flatten = require('gulp-flatten');
 
 gulp.task("default", ["assertions", "commands", "docs"]);
 
@@ -50,6 +51,7 @@ gulp.task("docs", function() {
 			this.emit("end");
 		}))
 		.pipe(markdox())
+		.pipe(flatten())
 		.pipe(rename({
 			extname: ".md"
 		}))
