@@ -20,6 +20,7 @@ exports.command = command;
  * @param {String} selector - jQuery selector for the element
  * @param {Function} callback - function that will be called with the element as argument
 */
+
 //The param "selector" that is passed to a custom command or assertion
 //can be an array of selector, or a string.
 //It's an array when a custom command is called from a section, and
@@ -48,7 +49,7 @@ function command(selector, callback) {
 		//If there's an array i get the parent element, then use jQuery.find()
 		//or element.querySelectorAll() to find the actual element
 		var getElementFromSelector = function getElementFromSelector(selector) {
-			var options = arguments.length <= 1 || arguments[1] === undefined ? { jquery: false } : arguments[1];
+			var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : { jquery: false };
 
 			if (Array.isArray(selector)) {
 				var section_selector = selector[0];

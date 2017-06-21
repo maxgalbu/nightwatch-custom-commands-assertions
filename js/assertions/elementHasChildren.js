@@ -49,8 +49,8 @@ var getMultipleSelectors = function getMultipleSelectors(selector) {
 function assertion(selector) {
 	var _this = this;
 
-	var children_selectors = arguments.length <= 1 || arguments[1] === undefined ? "" : arguments[1];
-	var msg = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
+	var children_selectors = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+	var msg = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 
 	this.message = msg;
 	if (!this.message) {
@@ -75,7 +75,7 @@ function assertion(selector) {
 			//If there's an array i get the parent element, then use jQuery.find()
 			//or element.querySelectorAll() to find the actual element
 			var getElementFromSelector = function getElementFromSelector(selector) {
-				var options = arguments.length <= 1 || arguments[1] === undefined ? { jquery: false } : arguments[1];
+				var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : { jquery: false };
 
 				if (Array.isArray(selector)) {
 					var section_selector = selector[0];

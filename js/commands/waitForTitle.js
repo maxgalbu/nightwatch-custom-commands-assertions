@@ -43,7 +43,7 @@ var WaitForTitle = function (_events$EventEmitter) {
 	function WaitForTitle() {
 		_classCallCheck(this, WaitForTitle);
 
-		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(WaitForTitle).call(this));
+		var _this = _possibleConstructorReturn(this, (WaitForTitle.__proto__ || Object.getPrototypeOf(WaitForTitle)).call(this));
 
 		_this.timeoutRetryInMilliseconds = 100;
 		_this.defaultTimeoutInMilliseconds = 5000;

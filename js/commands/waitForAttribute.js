@@ -45,7 +45,7 @@ var WaitForAttribute = function (_events$EventEmitter) {
 	function WaitForAttribute() {
 		_classCallCheck(this, WaitForAttribute);
 
-		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(WaitForAttribute).call(this));
+		var _this = _possibleConstructorReturn(this, (WaitForAttribute.__proto__ || Object.getPrototypeOf(WaitForAttribute)).call(this));
 
 		_this.timeoutRetryInMilliseconds = 100;
 		_this.defaultTimeoutInMilliseconds = 5000;

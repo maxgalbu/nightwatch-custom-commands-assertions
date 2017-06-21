@@ -43,7 +43,7 @@ var getMultipleSelectors = function getMultipleSelectors(selector) {
 function assertion(selector) {
 	var _this = this;
 
-	var msg = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
+	var msg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
 	this.message = msg || _util2.default.format('Testing if element <%s> doesn\'t have child nodes', selector);
 	this.expected = true;
@@ -66,7 +66,7 @@ function assertion(selector) {
 			//If there's an array i get the parent element, then use jQuery.find()
 			//or element.querySelectorAll() to find the actual element
 			var getElementFromSelector = function getElementFromSelector(selector) {
-				var options = arguments.length <= 1 || arguments[1] === undefined ? { jquery: false } : arguments[1];
+				var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : { jquery: false };
 
 				if (Array.isArray(selector)) {
 					var section_selector = selector[0];

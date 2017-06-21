@@ -44,7 +44,7 @@ var WaitForText = function (_events$EventEmitter) {
 	function WaitForText() {
 		_classCallCheck(this, WaitForText);
 
-		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(WaitForText).call(this));
+		var _this = _possibleConstructorReturn(this, (WaitForText.__proto__ || Object.getPrototypeOf(WaitForText)).call(this));
 
 		_this.timeoutRetryInMilliseconds = 100;
 		_this.defaultTimeoutInMilliseconds = 5000;

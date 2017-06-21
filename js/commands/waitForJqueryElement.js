@@ -42,7 +42,7 @@ var WaitForJqueryElement = function (_events$EventEmitter) {
 	function WaitForJqueryElement() {
 		_classCallCheck(this, WaitForJqueryElement);
 
-		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(WaitForJqueryElement).call(this));
+		var _this = _possibleConstructorReturn(this, (WaitForJqueryElement.__proto__ || Object.getPrototypeOf(WaitForJqueryElement)).call(this));
 
 		_this.timeoutRetryInMilliseconds = 100;
 		_this.defaultTimeoutInMilliseconds = 5000;

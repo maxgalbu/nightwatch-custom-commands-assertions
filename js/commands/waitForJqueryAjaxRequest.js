@@ -38,7 +38,7 @@ var WaitForJqueryAjaxRequest = function (_events$EventEmitter) {
 	function WaitForJqueryAjaxRequest() {
 		_classCallCheck(this, WaitForJqueryAjaxRequest);
 
-		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(WaitForJqueryAjaxRequest).call(this));
+		var _this = _possibleConstructorReturn(this, (WaitForJqueryAjaxRequest.__proto__ || Object.getPrototypeOf(WaitForJqueryAjaxRequest)).call(this));
 
 		_this.timeoutRetryInMilliseconds = 100;
 		_this.defaultTimeoutInMilliseconds = 5000;

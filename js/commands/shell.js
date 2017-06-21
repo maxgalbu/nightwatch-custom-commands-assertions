@@ -37,7 +37,7 @@ var ShellAction = function (_events$EventEmitter) {
 	function ShellAction() {
 		_classCallCheck(this, ShellAction);
 
-		return _possibleConstructorReturn(this, Object.getPrototypeOf(ShellAction).apply(this, arguments));
+		return _possibleConstructorReturn(this, (ShellAction.__proto__ || Object.getPrototypeOf(ShellAction)).apply(this, arguments));
 	}
 
 	_createClass(ShellAction, [{

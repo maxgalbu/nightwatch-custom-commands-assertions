@@ -53,7 +53,7 @@ var SaveElementScreenshotAction = function (_events$EventEmitter) {
 	function SaveElementScreenshotAction() {
 		_classCallCheck(this, SaveElementScreenshotAction);
 
-		return _possibleConstructorReturn(this, Object.getPrototypeOf(SaveElementScreenshotAction).apply(this, arguments));
+		return _possibleConstructorReturn(this, (SaveElementScreenshotAction.__proto__ || Object.getPrototypeOf(SaveElementScreenshotAction)).apply(this, arguments));
 	}
 
 	_createClass(SaveElementScreenshotAction, [{
