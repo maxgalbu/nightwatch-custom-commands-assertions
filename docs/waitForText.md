@@ -2,7 +2,7 @@
 
 <!-- Start es6/commands/waitForText.js -->
 
-## WaitForText 
+## WaitForText
 
 This custom command allows us to locate an HTML element on the page and then wait until the value of the element's
 inner text (the text between the opening and closing tags) matches the provided expression (aka. the 'checker' function).

@@ -2,7 +2,7 @@
 
 <!-- Start es6/commands/waitForTitle.js -->
 
-## WaitForTitle 
+## WaitForTitle
 
 This custom command allows us to wait until the value of the page title matches the provided expression
 (aka. the 'checker' function).

@@ -2,7 +2,7 @@
 
 <!-- Start es6/commands/waitForJqueryElement.js -->
 
-## WaitForJqueryElement 
+## WaitForJqueryElement
 
 This custom command allows us to locate an HTML element on the page and then wait until the value of a
 specified attribute matches the provided expression (aka. the 'checker' function).
