@@ -11,9 +11,8 @@ maxTimeInMilliseconds (which fails the test). Nightwatch uses the Node.js EventE
 asynchronous code so this command is also an EventEmitter.
 ### Examples:
 
-    browser.waitForAttribute("img", "src", function(imageSource) {
-        return imageSource === "img/header.jpg";
-    });
+    browser.waitForJqueryElement(".classname:first > input:checked");
+    browser.waitForJqueryElement(".classname", 10000);
 
 Author: maxgalbu
 

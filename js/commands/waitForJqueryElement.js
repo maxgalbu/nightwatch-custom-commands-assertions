@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -27,9 +27,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  *
  * h3 Examples:
  *
- *     browser.waitForAttribute("img", "src", function(imageSource) {
- *         return imageSource === "img/header.jpg";
- *     });
+ *     browser.waitForJqueryElement(".classname:first > input:checked");
+ *     browser.waitForJqueryElement(".classname", 10000);
  *
  * @author maxgalbu
  * @param {String} elementSelector - jquery selector for the element
@@ -37,68 +36,68 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 */
 
 var WaitForJqueryElement = function (_events$EventEmitter) {
-	_inherits(WaitForJqueryElement, _events$EventEmitter);
+    _inherits(WaitForJqueryElement, _events$EventEmitter);
 
-	function WaitForJqueryElement() {
-		_classCallCheck(this, WaitForJqueryElement);
+    function WaitForJqueryElement() {
+        _classCallCheck(this, WaitForJqueryElement);
 
-		var _this = _possibleConstructorReturn(this, (WaitForJqueryElement.__proto__ || Object.getPrototypeOf(WaitForJqueryElement)).call(this));
+        var _this = _possibleConstructorReturn(this, (WaitForJqueryElement.__proto__ || Object.getPrototypeOf(WaitForJqueryElement)).call(this));
 
-		_this.timeoutRetryInMilliseconds = 100;
-		_this.defaultTimeoutInMilliseconds = 5000;
-		_this.startTimeInMilliseconds = null;
-		return _this;
-	}
+        _this.timeoutRetryInMilliseconds = 100;
+        _this.defaultTimeoutInMilliseconds = 5000;
+        _this.startTimeInMilliseconds = null;
+        return _this;
+    }
 
-	_createClass(WaitForJqueryElement, [{
-		key: 'command',
-		value: function command(elementSelector, timeoutInMilliseconds) {
-			var _this2 = this;
+    _createClass(WaitForJqueryElement, [{
+        key: 'command',
+        value: function command(elementSelector, timeoutInMilliseconds) {
+            var _this2 = this;
 
-			this.startTimeInMilliseconds = new Date().getTime();
+            this.startTimeInMilliseconds = new Date().getTime();
 
-			if (typeof timeoutInMilliseconds !== 'number') {
-				timeoutInMilliseconds = this.api.globals.waitForConditionTimeout;
-			}
-			if (typeof timeoutInMilliseconds !== 'number') {
-				timeoutInMilliseconds = this.defaultTimeoutInMilliseconds;
-			}
+            if (typeof timeoutInMilliseconds !== 'number') {
+                timeoutInMilliseconds = this.api.globals.waitForConditionTimeout;
+            }
+            if (typeof timeoutInMilliseconds !== 'number') {
+                timeoutInMilliseconds = this.defaultTimeoutInMilliseconds;
+            }
 
-			this.check(elementSelector, function (result, loadedTimeInMilliseconds) {
-				var message = "";
-				if (result) {
-					message = 'waitForJqueryElement: ' + elementSelector + '. Expression was true after ' + (loadedTimeInMilliseconds - _this2.startTimeInMilliseconds) + '.';
-				} else {
-					message = 'waitForJqueryElement: ' + elementSelector + '. Expression wasn\'t true in ' + timeoutInMilliseconds + ' ms.';
-				}
+            this.check(elementSelector, function (result, loadedTimeInMilliseconds) {
+                var message = "";
+                if (result) {
+                    message = 'waitForJqueryElement: ' + elementSelector + '. Expression was true after ' + (loadedTimeInMilliseconds - _this2.startTimeInMilliseconds) + '.';
+                } else {
+                    message = 'waitForJqueryElement: ' + elementSelector + '. Expression wasn\'t true in ' + timeoutInMilliseconds + ' ms.';
+                }
 
-				_this2.client.assertion(result, 'expression false', 'expression true', message, true);
-				return _this2.emit('complete');
-			}, timeoutInMilliseconds);
+                _this2.client.assertion(result, 'expression false', 'expression true', message, true);
+                return _this2.emit('complete');
+            }, timeoutInMilliseconds);
 
-			return this;
-		}
-	}, {
-		key: 'check',
-		value: function check(elementSelector, callback, maxTimeInMilliseconds) {
-			var _this3 = this;
+            return this;
+        }
+    }, {
+        key: 'check',
+        value: function check(elementSelector, callback, maxTimeInMilliseconds) {
+            var _this3 = this;
 
-			return this.api.jqueryElement(elementSelector, function (result) {
-				var now = new Date().getTime();
-				if (result) {
-					return callback(true, now);
-				} else if (now - _this3.startTimeInMilliseconds < maxTimeInMilliseconds) {
-					return setTimeout(function () {
-						return _this3.check(elementSelector, callback, maxTimeInMilliseconds);
-					}, _this3.timeoutRetryInMilliseconds);
-				} else {
-					return callback(false);
-				}
-			});
-		}
-	}]);
+            return this.api.jqueryElement(elementSelector, function (result) {
+                var now = new Date().getTime();
+                if (result) {
+                    return callback(true, now);
+                } else if (now - _this3.startTimeInMilliseconds < maxTimeInMilliseconds) {
+                    return setTimeout(function () {
+                        return _this3.check(elementSelector, callback, maxTimeInMilliseconds);
+                    }, _this3.timeoutRetryInMilliseconds);
+                } else {
+                    return callback(false);
+                }
+            });
+        }
+    }]);
 
-	return WaitForJqueryElement;
+    return WaitForJqueryElement;
 }(_events2.default.EventEmitter);
 
 exports.default = WaitForJqueryElement;
