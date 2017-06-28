@@ -37,6 +37,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @param {String} attribute - attribute to be checked
  * @param {Function} checker - function that must return true if the attribute matches, false otherwise
  * @param {Integer} [timeoutInMilliseconds] - timeout of this wait commands in milliseconds
+ * @param {String} [defaultMessage] - message to display
 */
 
 var WaitForAttribute = function (_events$EventEmitter) {
@@ -66,7 +67,7 @@ var WaitForAttribute = function (_events$EventEmitter) {
 		}
 	}, {
 		key: "command",
-		value: function command(elementSelector, attribute, checker, timeoutInMilliseconds) {
+		value: function command(elementSelector, attribute, checker, timeoutInMilliseconds, defaultMessage) {
 			var _this2 = this;
 
 			//Save the origian locate strategy, because if this command is used with
@@ -84,10 +85,16 @@ var WaitForAttribute = function (_events$EventEmitter) {
 			if (typeof timeoutInMilliseconds !== 'number') {
 				timeoutInMilliseconds = this.defaultTimeoutInMilliseconds;
 			}
+			if (defaultMessage && typeof defaultMessage !== 'string') {
+				this.emit('error', "defaultMessage is not a string");
+				return;
+			}
 
 			this.check(elementSelector, attribute, checker, function (result, loadedTimeInMilliseconds) {
 				var message = "";
-				if (result) {
+				if (defaultMessage) {
+					message = defaultMessage;
+				} else if (result) {
 					message = "waitForAttribute: " + elementSelector + "@" + attribute + ". Expression was true after " + (loadedTimeInMilliseconds - _this2.startTimeInMilliseconds) + ".";
 				} else {
 					message = "waitForAttribute: " + elementSelector + "@" + attribute + ". Expression wasn't true in " + timeoutInMilliseconds + " ms.";

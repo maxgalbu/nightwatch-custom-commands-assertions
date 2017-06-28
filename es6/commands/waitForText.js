@@ -18,6 +18,7 @@ import events from 'events';
  * @param {String} elementSelector - css/xpath selector for the element
  * @param {Function} checker - function that must return true if the element's text matches your requisite, false otherwise
  * @param {Integer} [timeoutInMilliseconds] - timeout of this wait commands in milliseconds
+ * @param {String} [defaultMessage] - message to display
 */
 
 class WaitForText extends events.EventEmitter {
@@ -35,7 +36,7 @@ class WaitForText extends events.EventEmitter {
 		if (this.locateStrategy === "css") { return this.api.useCss(); }
 	}
 
-	command(elementSelector, checker, timeoutInMilliseconds) {
+	command(elementSelector, checker, timeoutInMilliseconds, defaultMessage) {
 		//Save the origian locate strategy, because if this command is used with
 		//page objects, the "checker" function of this command is wrapped with another
 		//function which resets the locate strategy after the function is called,
@@ -51,12 +52,19 @@ class WaitForText extends events.EventEmitter {
 		if (typeof timeoutInMilliseconds !== 'number') {
 			timeoutInMilliseconds = this.defaultTimeoutInMilliseconds;
 		}
+		if (defaultMessage && typeof defaultMessage !== 'string') {
+			this.emit('error', "defaultMessage is not a string");
+			return;
+		}
 
 		this.check(elementSelector, checker, (result, loadedTimeInMilliseconds) => {
-			if (result) {
-				var message = `waitForText: ${elementSelector}. Expression was true after ${loadedTimeInMilliseconds - this.startTimeInMilliseconds} ms.`;
+			let message = "";
+			if (defaultMessage) {
+				message = defaultMessage;
+			} else if (result) {
+				message = `waitForText: ${elementSelector}. Expression was true after ${loadedTimeInMilliseconds - this.startTimeInMilliseconds} ms.`;
 			} else {
-				var message = `waitForText: ${elementSelector}. Expression wasn't true in ${timeoutInMilliseconds} ms.`;
+				message = `waitForText: ${elementSelector}. Expression wasn't true in ${timeoutInMilliseconds} ms.`;
 			}
 			
 			this.client.assertion(result, 'expression false', 'expression true', message, true);

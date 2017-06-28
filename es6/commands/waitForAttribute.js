@@ -19,6 +19,7 @@ import events from 'events';
  * @param {String} attribute - attribute to be checked
  * @param {Function} checker - function that must return true if the attribute matches, false otherwise
  * @param {Integer} [timeoutInMilliseconds] - timeout of this wait commands in milliseconds
+ * @param {String} [defaultMessage] - message to display
 */
 
 class WaitForAttribute extends events.EventEmitter {
@@ -40,7 +41,7 @@ class WaitForAttribute extends events.EventEmitter {
 		}
 	}
 
-	command(elementSelector, attribute, checker, timeoutInMilliseconds) {
+	command(elementSelector, attribute, checker, timeoutInMilliseconds, defaultMessage) {
 		//Save the origian locate strategy, because if this command is used with
 		//page objects, the "checker" function of this command is wrapped with another
 		//function which resets the locate strategy after the function is called,
@@ -56,10 +57,16 @@ class WaitForAttribute extends events.EventEmitter {
 		if (typeof timeoutInMilliseconds !== 'number') {
 			timeoutInMilliseconds = this.defaultTimeoutInMilliseconds;
 		}
+		if (defaultMessage && typeof defaultMessage !== 'string') {
+            this.emit('error', "defaultMessage is not a string");
+            return;
+        }
 
 		this.check(elementSelector, attribute, checker, (result, loadedTimeInMilliseconds) => {
 			let message = "";
-			if (result) {
+			if (defaultMessage) {
+				message = defaultMessage;
+			} else if (result) {
 				message = `waitForAttribute: ${elementSelector}@${attribute}. Expression was true after ${loadedTimeInMilliseconds - this.startTimeInMilliseconds}.`;
 			} else {
 				message = `waitForAttribute: ${elementSelector}@${attribute}. Expression wasn't true in ${timeoutInMilliseconds} ms.`;

@@ -15,6 +15,7 @@ exports.command = command;
  * @param {String} selector - jQuery selector for the element
  * @param {String} value - value of the element to be set
  * @param {Function} [callback] - function that will be called after the change event is triggered
+ * @param {String} [message] - message to display
 */
 
 //The param "selector" that is passed to a custom command or assertion

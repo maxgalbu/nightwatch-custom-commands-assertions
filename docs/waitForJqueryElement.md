@@ -20,6 +20,7 @@ Author: maxgalbu
 
 * **String** *elementSelector* - jquery selector for the element
 * **Integer** *[timeoutInMilliseconds]* - timeout of this wait commands in milliseconds
+* **String** *[defaultMessage]* - message to display
 
 <!-- End es6/commands/waitForJqueryElement.js -->
 

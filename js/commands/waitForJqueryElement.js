@@ -33,6 +33,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @author maxgalbu
  * @param {String} elementSelector - jquery selector for the element
  * @param {Integer} [timeoutInMilliseconds] - timeout of this wait commands in milliseconds
+ * @param {String} [defaultMessage] - message to display
 */
 
 var WaitForJqueryElement = function (_events$EventEmitter) {
@@ -51,7 +52,7 @@ var WaitForJqueryElement = function (_events$EventEmitter) {
 
     _createClass(WaitForJqueryElement, [{
         key: 'command',
-        value: function command(elementSelector, timeoutInMilliseconds) {
+        value: function command(elementSelector, timeoutInMilliseconds, defaultMessage) {
             var _this2 = this;
 
             this.startTimeInMilliseconds = new Date().getTime();
@@ -62,10 +63,16 @@ var WaitForJqueryElement = function (_events$EventEmitter) {
             if (typeof timeoutInMilliseconds !== 'number') {
                 timeoutInMilliseconds = this.defaultTimeoutInMilliseconds;
             }
+            if (defaultMessage && typeof defaultMessage !== 'string') {
+                this.emit('error', "defaultMessage is not a string");
+                return;
+            }
 
             this.check(elementSelector, function (result, loadedTimeInMilliseconds) {
                 var message = "";
-                if (result) {
+                if (defaultMessage) {
+                    message = defaultMessage;
+                } else if (result) {
                     message = 'waitForJqueryElement: ' + elementSelector + '. Expression was true after ' + (loadedTimeInMilliseconds - _this2.startTimeInMilliseconds) + '.';
                 } else {
                     message = 'waitForJqueryElement: ' + elementSelector + '. Expression wasn\'t true in ' + timeoutInMilliseconds + ' ms.';

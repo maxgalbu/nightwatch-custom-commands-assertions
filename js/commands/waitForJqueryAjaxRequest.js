@@ -30,6 +30,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  *
  * @author maxgalbu
  * @param {Integer} [timeoutInMilliseconds] - timeout of this wait commands in milliseconds
+ * @param {String} [defaultMessage] - message to display
 */
 
 var WaitForJqueryAjaxRequest = function (_events$EventEmitter) {
@@ -48,7 +49,7 @@ var WaitForJqueryAjaxRequest = function (_events$EventEmitter) {
 
 	_createClass(WaitForJqueryAjaxRequest, [{
 		key: 'command',
-		value: function command(timeoutInMilliseconds) {
+		value: function command(timeoutInMilliseconds, defaultMessage) {
 			var _this2 = this;
 
 			this.startTimeInMilliseconds = new Date().getTime();
@@ -59,10 +60,16 @@ var WaitForJqueryAjaxRequest = function (_events$EventEmitter) {
 			if (typeof timeoutInMilliseconds !== 'number') {
 				timeoutInMilliseconds = this.defaultTimeoutInMilliseconds;
 			}
+			if (defaultMessage && typeof defaultMessage !== 'string') {
+				this.emit('error', "defaultMessage is not a string");
+				return;
+			}
 
 			this.check(function (result, loadedTimeInMilliseconds) {
 				var message = "";
-				if (result) {
+				if (defaultMessage) {
+					message = defaultMessage;
+				} else if (result) {
 					message = 'waitForJqueryAjaxRequest: AJAX requests finished after ' + (loadedTimeInMilliseconds - _this2.startTimeInMilliseconds) + ' ms.';
 				} else {
 					message = 'waitForJqueryAjaxRequest: AJAX requests not finished in ' + timeoutInMilliseconds + ' ms.';

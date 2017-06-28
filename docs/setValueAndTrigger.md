@@ -14,6 +14,7 @@ Author: maxgalbu
 * **String** *selector* - jQuery selector for the element
 * **String** *value* - value of the element to be set
 * **Function** *[callback]* - function that will be called after the change event is triggered
+* **String** *[message]* - message to display
 
 <!-- End es6/commands/setValueAndTrigger.js -->
 

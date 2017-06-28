@@ -24,6 +24,7 @@ See: https://github.com/beatfactor/nightwatch/issues/246#issuecomment-59461345
 * **String** *elementSelector* - css/xpath selector for the element
 * **Function** *checker* - function that must return true if the element's text matches your requisite, false otherwise
 * **Integer** *[timeoutInMilliseconds]* - timeout of this wait commands in milliseconds
+* **String** *[defaultMessage]* - message to display
 
 <!-- End es6/commands/waitForText.js -->
 

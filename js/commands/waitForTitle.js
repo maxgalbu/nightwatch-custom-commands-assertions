@@ -35,6 +35,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @see https://github.com/beatfactor/nightwatch/issues/246#issuecomment-59461345
  * @param {Function} checker - function that must return true if the title matches your requisite, false otherwise
  * @param {Integer} [timeoutInMilliseconds] - timeout of this wait commands in milliseconds
+ * @param {String} [defaultMessage] - message to display
 */
 
 var WaitForTitle = function (_events$EventEmitter) {
@@ -53,7 +54,7 @@ var WaitForTitle = function (_events$EventEmitter) {
 
 	_createClass(WaitForTitle, [{
 		key: 'command',
-		value: function command(checker, timeoutInMilliseconds) {
+		value: function command(checker, timeoutInMilliseconds, defaultMessage) {
 			var _this2 = this;
 
 			this.startTimeInMilliseconds = new Date().getTime();
@@ -64,10 +65,16 @@ var WaitForTitle = function (_events$EventEmitter) {
 			if (typeof timeoutInMilliseconds !== 'number') {
 				timeoutInMilliseconds = this.defaultTimeoutInMilliseconds;
 			}
+			if (defaultMessage && typeof defaultMessage !== 'string') {
+				this.emit('error', "defaultMessage is not a string");
+				return;
+			}
 
 			this.check(checker, function (result, loadedTimeInMilliseconds) {
 				var message = "";
-				if (result) {
+				if (defaultMessage) {
+					message = defaultMessage;
+				} else if (result) {
 					message = 'waitForTitle: Expression was true after ' + (loadedTimeInMilliseconds - _this2.startTimeInMilliseconds) + '.';
 				} else {
 					message = 'waitForTitle: ' + element + '@' + attribute + '. Expression wasn\'t true in ' + timeoutInMilliseconds + ' ms.';

@@ -28,6 +28,7 @@ Author: maxgalbu
 
 * **String** *elementSelector* - css/xpath selector for the element
 * **Function** *fileName* - file path where the screenshot is saved
+* **String** *[defaultMessage]* - message to display
 
 <!-- End es6/commands/saveElementScreenshot.js -->
 

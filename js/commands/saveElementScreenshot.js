@@ -45,6 +45,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * @author maxgalbu
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * @param {String} elementSelector - css/xpath selector for the element
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * @param {Function} fileName - file path where the screenshot is saved
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @param {String} [defaultMessage] - message to display
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 var SaveElementScreenshotAction = function (_events$EventEmitter) {
@@ -58,8 +59,13 @@ var SaveElementScreenshotAction = function (_events$EventEmitter) {
 
 	_createClass(SaveElementScreenshotAction, [{
 		key: 'command',
-		value: function command(elementSelector, fileName) {
+		value: function command(elementSelector, fileName, defaultMessage) {
 			var _this2 = this;
+
+			if (defaultMessage && typeof defaultMessage !== 'string') {
+				this.emit('error', "defaultMessage is not a string");
+				return;
+			}
 
 			this.api.getElementSize(elementSelector, function (sizeResult) {
 				return _this2.api.getLocation(elementSelector, function (locationResult) {
@@ -85,9 +91,16 @@ var SaveElementScreenshotAction = function (_events$EventEmitter) {
 				y: location.y,
 				gravity: 'North-West'
 			}).then(function (file) {
+				var message = 'Saved screenshot for <' + elementSelector + '> to ' + fileName;
+				if (defaultMessage) {
+					message = defaultMessage;
+				}
+
+				_this3.client.assertion(result, 'expression false', 'expression true', message, true);
 				return _this3.emit("complete");
 			}, function (err) {
-				return console.error(err), _this3.emit("complete");
+				_this3.emit('error', 'SaveElementScreenshotAction: could not save screenshot (error is ' + err + ')');
+				return _this3.emit("complete");
 			});
 		}
 	}]);

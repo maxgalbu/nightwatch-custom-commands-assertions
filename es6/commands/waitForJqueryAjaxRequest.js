@@ -12,6 +12,7 @@ import events from 'events';
  *
  * @author maxgalbu
  * @param {Integer} [timeoutInMilliseconds] - timeout of this wait commands in milliseconds
+ * @param {String} [defaultMessage] - message to display
 */
 
 class WaitForJqueryAjaxRequest extends events.EventEmitter {
@@ -23,7 +24,7 @@ class WaitForJqueryAjaxRequest extends events.EventEmitter {
 		this.startTimeInMilliseconds = null;
 	}
 
-	command(timeoutInMilliseconds) {
+	command(timeoutInMilliseconds, defaultMessage) {
 		this.startTimeInMilliseconds = new Date().getTime();
 
 		if (typeof timeoutInMilliseconds !== 'number') {
@@ -32,10 +33,16 @@ class WaitForJqueryAjaxRequest extends events.EventEmitter {
 		if (typeof timeoutInMilliseconds !== 'number') {
 			timeoutInMilliseconds = this.defaultTimeoutInMilliseconds;
 		}
+		if (defaultMessage && typeof defaultMessage !== 'string') {
+            this.emit('error', "defaultMessage is not a string");
+            return;
+        }
 
 		this.check((result, loadedTimeInMilliseconds) => {
 			let message = "";
-			if (result) {
+			if (defaultMessage) {
+				message = defaultMessage;
+			} else if (result) {
 				message = `waitForJqueryAjaxRequest: AJAX requests finished after ${loadedTimeInMilliseconds - this.startTimeInMilliseconds} ms.`;
 			} else {
 				message = `waitForJqueryAjaxRequest: AJAX requests not finished in ${timeoutInMilliseconds} ms.`;

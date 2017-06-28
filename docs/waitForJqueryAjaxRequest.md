@@ -17,6 +17,7 @@ Author: maxgalbu
 ### Params:
 
 * **Integer** *[timeoutInMilliseconds]* - timeout of this wait commands in milliseconds
+* **String** *[defaultMessage]* - message to display
 
 <!-- End es6/commands/waitForJqueryAjaxRequest.js -->
 

@@ -15,6 +15,7 @@ import events from 'events';
  * @author maxgalbu
  * @param {String} elementSelector - jquery selector for the element
  * @param {Integer} [timeoutInMilliseconds] - timeout of this wait commands in milliseconds
+ * @param {String} [defaultMessage] - message to display
 */
 
 class WaitForJqueryElement extends events.EventEmitter {
@@ -26,7 +27,7 @@ class WaitForJqueryElement extends events.EventEmitter {
         this.startTimeInMilliseconds = null;
     }
 
-    command(elementSelector, timeoutInMilliseconds) {
+    command(elementSelector, timeoutInMilliseconds, defaultMessage) {
         this.startTimeInMilliseconds = new Date().getTime();
 
         if (typeof timeoutInMilliseconds !== 'number') {
@@ -35,10 +36,16 @@ class WaitForJqueryElement extends events.EventEmitter {
         if (typeof timeoutInMilliseconds !== 'number') {
             timeoutInMilliseconds = this.defaultTimeoutInMilliseconds;
         }
+        if (defaultMessage && typeof defaultMessage !== 'string') {
+            this.emit('error', "defaultMessage is not a string");
+            return;
+        }
 
         this.check(elementSelector, (result, loadedTimeInMilliseconds) => {
             let message = "";
-            if (result) {
+            if (defaultMessage) {
+                message = defaultMessage;
+            } else if (result) {
                 message = `waitForJqueryElement: ${elementSelector}. Expression was true after ${loadedTimeInMilliseconds - this.startTimeInMilliseconds}.`;
             } else {
                 message = `waitForJqueryElement: ${elementSelector}. Expression wasn't true in ${timeoutInMilliseconds} ms.`;

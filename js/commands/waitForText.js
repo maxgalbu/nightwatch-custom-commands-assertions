@@ -36,6 +36,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @param {String} elementSelector - css/xpath selector for the element
  * @param {Function} checker - function that must return true if the element's text matches your requisite, false otherwise
  * @param {Integer} [timeoutInMilliseconds] - timeout of this wait commands in milliseconds
+ * @param {String} [defaultMessage] - message to display
 */
 
 var WaitForText = function (_events$EventEmitter) {
@@ -65,7 +66,7 @@ var WaitForText = function (_events$EventEmitter) {
 		}
 	}, {
 		key: "command",
-		value: function command(elementSelector, checker, timeoutInMilliseconds) {
+		value: function command(elementSelector, checker, timeoutInMilliseconds, defaultMessage) {
 			var _this2 = this;
 
 			//Save the origian locate strategy, because if this command is used with
@@ -83,12 +84,19 @@ var WaitForText = function (_events$EventEmitter) {
 			if (typeof timeoutInMilliseconds !== 'number') {
 				timeoutInMilliseconds = this.defaultTimeoutInMilliseconds;
 			}
+			if (defaultMessage && typeof defaultMessage !== 'string') {
+				this.emit('error', "defaultMessage is not a string");
+				return;
+			}
 
 			this.check(elementSelector, checker, function (result, loadedTimeInMilliseconds) {
-				if (result) {
-					var message = "waitForText: " + elementSelector + ". Expression was true after " + (loadedTimeInMilliseconds - _this2.startTimeInMilliseconds) + " ms.";
+				var message = "";
+				if (defaultMessage) {
+					message = defaultMessage;
+				} else if (result) {
+					message = "waitForText: " + elementSelector + ". Expression was true after " + (loadedTimeInMilliseconds - _this2.startTimeInMilliseconds) + " ms.";
 				} else {
-					var message = "waitForText: " + elementSelector + ". Expression wasn't true in " + timeoutInMilliseconds + " ms.";
+					message = "waitForText: " + elementSelector + ". Expression wasn't true in " + timeoutInMilliseconds + " ms.";
 				}
 
 				_this2.client.assertion(result, 'expression false', 'expression true', message, true);

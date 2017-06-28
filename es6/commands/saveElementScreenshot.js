@@ -23,13 +23,19 @@
  * @author maxgalbu
  * @param {String} elementSelector - css/xpath selector for the element
  * @param {Function} fileName - file path where the screenshot is saved
+ * @param {String} [defaultMessage] - message to display
 */
 
 import events from 'events';
 import easyimg from 'easyimage';
 
 class SaveElementScreenshotAction extends events.EventEmitter {
-	command(elementSelector, fileName) {
+	command(elementSelector, fileName, defaultMessage) {
+		if (defaultMessage && typeof defaultMessage !== 'string') {
+            this.emit('error', "defaultMessage is not a string");
+            return;
+        }
+
 		this.api.getElementSize(elementSelector, sizeResult => {
 			return this.api.getLocation(elementSelector, locationResult => {
 				return this.api.saveScreenshot(fileName, () => {
@@ -51,8 +57,19 @@ class SaveElementScreenshotAction extends events.EventEmitter {
 			y: location.y,
 			gravity: 'North-West'
 		}).then(
-			file => this.emit("complete"),
-			err => (console.error(err), this.emit("complete"))
+			file => {
+				let message = `Saved screenshot for <${elementSelector}> to ${fileName}`;
+				if (defaultMessage) {
+					message = defaultMessage;
+				}
+
+				this.client.assertion(result, 'expression false', 'expression true', message, true); 
+				return this.emit("complete");
+			},
+			err => {
+				this.emit('error', `SaveElementScreenshotAction: could not save screenshot (error is ${err})`);
+				return this.emit("complete");
+			}
 		);
 
 	}

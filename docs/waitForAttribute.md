@@ -25,6 +25,7 @@ See: https://github.com/beatfactor/nightwatch/issues/246#issuecomment-59461345
 * **String** *attribute* - attribute to be checked
 * **Function** *checker* - function that must return true if the attribute matches, false otherwise
 * **Integer** *[timeoutInMilliseconds]* - timeout of this wait commands in milliseconds
+* **String** *[defaultMessage]* - message to display
 
 <!-- End es6/commands/waitForAttribute.js -->
 
