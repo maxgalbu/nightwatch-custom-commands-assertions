@@ -62,15 +62,14 @@ var SaveElementScreenshotAction = function (_events$EventEmitter) {
 		value: function command(elementSelector, fileName, defaultMessage) {
 			var _this2 = this;
 
-			if (defaultMessage && typeof defaultMessage !== 'string') {
-				this.emit('error', "defaultMessage is not a string");
-				return;
-			}
+			this.elementSelector = elementSelector;
+			this.fileName = fileName;
+			this.defaultMessage = defaultMessage;
 
 			this.api.getElementSize(elementSelector, function (sizeResult) {
 				return _this2.api.getLocation(elementSelector, function (locationResult) {
 					return _this2.api.saveScreenshot(fileName, function () {
-						return _this2.crop(fileName, sizeResult.value, locationResult.value);
+						_this2.crop(sizeResult.value, locationResult.value);
 					});
 				});
 			});
@@ -79,28 +78,27 @@ var SaveElementScreenshotAction = function (_events$EventEmitter) {
 		}
 	}, {
 		key: 'crop',
-		value: function crop(fileName, size, location) {
+		value: function crop(size, location) {
 			var _this3 = this;
 
-			_easyimage2.default.crop({
-				src: fileName,
-				dst: fileName,
+			return _easyimage2.default.crop({
+				src: this.fileName,
+				dst: this.fileName,
 				cropwidth: size.width,
 				cropheight: size.height,
 				x: location.x,
 				y: location.y,
 				gravity: 'North-West'
 			}).then(function (file) {
-				var message = 'Saved screenshot for <' + elementSelector + '> to ' + fileName;
-				if (defaultMessage) {
-					message = defaultMessage;
+				var message = 'Saved screenshot for <' + _this3.elementSelector + '> to ' + _this3.fileName;
+				if (_this3.defaultMessage) {
+					message = _this3.defaultMessage;
 				}
 
-				_this3.client.assertion(result, 'expression false', 'expression true', message, true);
+				_this3.client.assertion(true, 'expression false', 'expression true', message, true);
 				return _this3.emit("complete");
 			}, function (err) {
-				_this3.emit('error', 'SaveElementScreenshotAction: could not save screenshot (error is ' + err + ')');
-				return _this3.emit("complete");
+				return _this3.emit('error', 'SaveElementScreenshotAction: could not save screenshot (error is ' + err + ')');
 			});
 		}
 	}]);

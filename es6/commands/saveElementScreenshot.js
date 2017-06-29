@@ -31,15 +31,14 @@ import easyimg from 'easyimage';
 
 class SaveElementScreenshotAction extends events.EventEmitter {
 	command(elementSelector, fileName, defaultMessage) {
-		if (defaultMessage && typeof defaultMessage !== 'string') {
-            this.emit('error', "defaultMessage is not a string");
-            return;
-        }
-
+		this.elementSelector = elementSelector;
+		this.fileName = fileName;
+		this.defaultMessage = defaultMessage;
+		
 		this.api.getElementSize(elementSelector, sizeResult => {
 			return this.api.getLocation(elementSelector, locationResult => {
 				return this.api.saveScreenshot(fileName, () => {
-					return this.crop(fileName, sizeResult.value, locationResult.value);
+					this.crop(sizeResult.value, locationResult.value);
 				});
 			});
 		});
@@ -47,10 +46,10 @@ class SaveElementScreenshotAction extends events.EventEmitter {
 		return this;
 	}
 
-	crop(fileName, size, location) {
-		easyimg.crop({
-			src: fileName,
-			dst: fileName,
+	crop(size, location) {
+		return easyimg.crop({
+			src: this.fileName,
+			dst: this.fileName,
 			cropwidth: size.width,
 			cropheight: size.height,
 			x: location.x,
@@ -58,17 +57,16 @@ class SaveElementScreenshotAction extends events.EventEmitter {
 			gravity: 'North-West'
 		}).then(
 			file => {
-				let message = `Saved screenshot for <${elementSelector}> to ${fileName}`;
-				if (defaultMessage) {
-					message = defaultMessage;
+				let message = `Saved screenshot for <${this.elementSelector}> to ${this.fileName}`;
+				if (this.defaultMessage) {
+					message = this.defaultMessage;
 				}
 
-				this.client.assertion(result, 'expression false', 'expression true', message, true); 
+				this.client.assertion(true, 'expression false', 'expression true', message, true);
 				return this.emit("complete");
 			},
 			err => {
-				this.emit('error', `SaveElementScreenshotAction: could not save screenshot (error is ${err})`);
-				return this.emit("complete");
+				return this.emit('error', `SaveElementScreenshotAction: could not save screenshot (error is ${err})`);
 			}
 		);
 
