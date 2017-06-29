@@ -1,6 +1,9 @@
 sudo: false
 language: node_js
 
+addons:
+  firefox: latest
+
 env:
   - NIGHTWATCH_ENV=
   - NIGHTWATCH_ENV=chrome
