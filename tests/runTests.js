@@ -106,7 +106,7 @@ module.exports = {
 			.saveElementScreenshot(".jumbotron", imageFileName)
 			.perform(function(client, done) {
 				easyimg.info(imageFileName).then(function(imageInfo) {
-					client.assert.equal(imageInfo.height == 235, true, "saveElementScreenshot works");
+					client.assert.equal(imageInfo.height, 234, "saveElementScreenshot works (height found ()"+imageInfo.height+") should be 234)");
 					fs.unlinkSync(imageFileName);
 					done();
 				});
