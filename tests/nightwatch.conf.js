@@ -1,4 +1,6 @@
-{
+var seleniumServer = require('selenium-server');
+
+module.exports = {
 	"src_folders": "runTests.js",
 	"output_folder": false,
 	"custom_commands_path": "../js/commands",
@@ -7,11 +9,12 @@
 	
 	"selenium": {
 		"start_process": true,
-		"server_path": "../node_modules/selenium-server/lib/runner/selenium-server-standalone-2.45.0.jar",
+		"server_path": seleniumServer.path,
 		"log_path": false,
 		"host": "127.0.0.1",
 		"port": 4444,
 		"cli_args": {
+			"webdriver.gecko.driver": "../node_modules/geckodriver/bin/geckodriver",
 			"webdriver.chrome.driver": "../node_modules/chromedriver/lib/chromedriver/chromedriver",
 			"webdriver.ie.driver": ""
 		}
