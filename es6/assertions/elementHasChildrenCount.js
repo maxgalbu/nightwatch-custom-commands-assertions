@@ -32,7 +32,7 @@ export function assertion(selector, children_count, children_selectors = "", msg
 		else
 			this.message = util.format('Testing if element <%s> has %d child nodes', selector, children_count);
 	}
-	this.expected = true;
+	this.expected = children_count;
 	
 	this.pass = (value) => {
 		return value == this.expected;
@@ -42,7 +42,7 @@ export function assertion(selector, children_count, children_selectors = "", msg
 		if (result.value.error) {
 			console.error(result.value.message);
 		}
-		return result.value == children_count;
+		return result.value;
 	};
 	
 	this.command = (callback) => {

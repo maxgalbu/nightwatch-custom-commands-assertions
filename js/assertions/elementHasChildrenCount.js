@@ -57,7 +57,7 @@ function assertion(selector, children_count) {
 	if (!this.message) {
 		if (children_selectors) this.message = _util2.default.format('Testing if element <%s> has %d child nodes that matches these selectors: \'%s\'', selector, children_count, children_selectors);else this.message = _util2.default.format('Testing if element <%s> has %d child nodes', selector, children_count);
 	}
-	this.expected = true;
+	this.expected = children_count;
 
 	this.pass = function (value) {
 		return value == _this.expected;
@@ -67,7 +67,7 @@ function assertion(selector, children_count) {
 		if (result.value.error) {
 			console.error(result.value.message);
 		}
-		return result.value == children_count;
+		return result.value;
 	};
 
 	this.command = function (callback) {
