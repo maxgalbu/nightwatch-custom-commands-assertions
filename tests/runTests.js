@@ -241,4 +241,12 @@ module.exports = {
 			.assert.containsText("#div", "something else")
 			.end();
 	},
+
+	"test waitForDocumentLoaded": function (browser) {
+		return browser
+			.url(baseurl + "/waitForDocumentLoaded")
+			.waitForDocumentLoaded(5000)
+			.assert.visible("#xkcd-img")
+			.end();
+    },
 };

@@ -65,3 +65,4 @@ monkeyPatchedMSC.mockHTMLResponse('/waitForAjaxRequest', "html/ajax.html");
 monkeyPatchedMSC.mockHTMLResponse('/delayedAjax', "html/ajax.json", {
 	delay: 3000
 });
+monkeyPatchedMSC.mockHTMLResponse('/waitForDocumentLoaded', "html/waitForDocumentLoaded.html");
