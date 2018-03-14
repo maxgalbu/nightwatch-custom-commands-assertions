@@ -93,8 +93,8 @@ module.exports = {
 	"test elementHasChildrenCount": function(browser) {
 		return browser
 			.url(baseurl+"/children")
-			.assert.elementHasChildrenCount(".myclass")
-			.assert.elementHasChildrenCount(".myclass", "li")
+			.assert.elementHasChildrenCount(".myclass", 3)
+			.assert.elementHasChildrenCount(".myclass", 3, "li")
 			.end();
 	},
 
