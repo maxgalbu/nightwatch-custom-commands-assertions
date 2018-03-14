@@ -90,6 +90,14 @@ module.exports = {
 			.end();
 	},
 
+	"test elementHasChildrenCount": function(browser) {
+		return browser
+			.url(baseurl+"/children")
+			.assert.elementHasChildrenCount(".myclass")
+			.assert.elementHasChildrenCount(".myclass", "li")
+			.end();
+	},
+
 	"test elementHasNoChildren": function(browser) {
 		return browser
 			.url(baseurl+"/nochildren")
