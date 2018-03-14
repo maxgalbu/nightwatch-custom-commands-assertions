@@ -65,7 +65,7 @@ function command(selector, callback) {
 
 					section_element = section_element[0];
 					if (options.parent_element) {
-						section_element = parent_element;
+						section_element = options.parent_element;
 					}
 
 					var elements = section_element.querySelectorAll(selector);
@@ -80,7 +80,12 @@ function command(selector, callback) {
 				if (options.jquery) {
 					return $(selector);
 				} else {
-					var elements = document.querySelectorAll(selector);
+					var parent_element = document;
+					if (options.parent_element) {
+						parent_element = options.parent_element;
+					}
+
+					var elements = parent_element.querySelectorAll(selector);
 					if (elements.length) {
 						if (options.return_all) {
 							return elements;
