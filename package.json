@@ -26,7 +26,7 @@
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-es2015": "^6.9.0",
     "chromedriver": "~2.19",
-    "geckodriver": "^1.7.1",
+    "geckodriver": "^1.10.0",
     "gulp": "^3.8.11",
     "gulp-babel": "^6.1.2",
     "gulp-flatten": "^0.3.1",
