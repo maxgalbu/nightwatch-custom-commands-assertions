@@ -18,8 +18,8 @@ import events from 'events';
 class WaitForDocumentLoaded extends events.EventEmitter {
     constructor() {
         super();
-        this.timeoutRetryInMilliseconds = 100;
-        this.defaultTimeoutInMilliseconds = 5000;
+        this.timeoutRetryInMilliseconds = this.api.globals.waitForConditionPollInterval || 100;
+        this.defaultTimeoutInMilliseconds = this.api.globals.waitForConditionTimeout || 5000;
         this.startTimeInMilliseconds = null;
     }
 
@@ -27,11 +27,7 @@ class WaitForDocumentLoaded extends events.EventEmitter {
         this.startTimeInMilliseconds = new Date().getTime();
 
         if (typeof timeoutInMilliseconds !== 'number') {
-            if (typeof this.api.globals.waitForConditionTimeout === 'number') {
-                timeoutInMilliseconds = this.api.globals.waitForConditionTimeout;
-            } else {
-                timeoutInMilliseconds = this.defaultTimeoutInMilliseconds;
-            }
+            timeoutInMilliseconds = this.defaultTimeoutInMilliseconds;
         }
 
         if (message && typeof message !== 'string') {
