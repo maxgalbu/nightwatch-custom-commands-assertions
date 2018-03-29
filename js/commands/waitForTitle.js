@@ -46,8 +46,8 @@ var WaitForTitle = function (_events$EventEmitter) {
 
 		var _this = _possibleConstructorReturn(this, (WaitForTitle.__proto__ || Object.getPrototypeOf(WaitForTitle)).call(this));
 
-		_this.timeoutRetryInMilliseconds = 100;
-		_this.defaultTimeoutInMilliseconds = 5000;
+		_this.timeoutRetryInMilliseconds = _this.api.globals.waitForConditionPollInterval || 100;
+		_this.defaultTimeoutInMilliseconds = _this.api.globals.waitForConditionTimeout || 5000;
 		_this.startTimeInMilliseconds = null;
 		return _this;
 	}
@@ -59,9 +59,6 @@ var WaitForTitle = function (_events$EventEmitter) {
 
 			this.startTimeInMilliseconds = new Date().getTime();
 
-			if (typeof timeoutInMilliseconds !== 'number') {
-				timeoutInMilliseconds = this.api.globals.waitForConditionTimeout;
-			}
 			if (typeof timeoutInMilliseconds !== 'number') {
 				timeoutInMilliseconds = this.defaultTimeoutInMilliseconds;
 			}

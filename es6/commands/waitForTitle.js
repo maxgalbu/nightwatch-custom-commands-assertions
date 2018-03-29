@@ -24,17 +24,14 @@ class WaitForTitle extends events.EventEmitter {
 	constructor() {
 		super();
 
-		this.timeoutRetryInMilliseconds = 100;
-		this.defaultTimeoutInMilliseconds = 5000;
+		this.timeoutRetryInMilliseconds = this.api.globals.waitForConditionPollInterval || 100;
+		this.defaultTimeoutInMilliseconds = this.api.globals.waitForConditionTimeout || 5000;
 		this.startTimeInMilliseconds = null;
 	}
 
 	command(checker, timeoutInMilliseconds, defaultMessage) {
 		this.startTimeInMilliseconds = new Date().getTime();
 
-		if (typeof timeoutInMilliseconds !== 'number') {
-			timeoutInMilliseconds = this.api.globals.waitForConditionTimeout;
-		}
 		if (typeof timeoutInMilliseconds !== 'number') {
 			timeoutInMilliseconds = this.defaultTimeoutInMilliseconds;
 		}
