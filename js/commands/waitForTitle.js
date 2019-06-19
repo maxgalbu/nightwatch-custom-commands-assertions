@@ -77,7 +77,7 @@ var WaitForTitle = function (_events$EventEmitter) {
 					message = 'waitForTitle: ' + element + '@' + attribute + '. Expression wasn\'t true in ' + timeoutInMilliseconds + ' ms.';
 				}
 
-				_this2.client.assertion(result, 'expression false', 'expression true', message, true);
+				_this2.api.assertion(result, 'expression false', 'expression true', message, true);
 				return _this2.emit('complete');
 			}, timeoutInMilliseconds);
 
