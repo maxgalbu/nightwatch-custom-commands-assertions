@@ -73,7 +73,7 @@ var WaitForDocumentLoaded = function (_events$EventEmitter) {
                     messageToShow = 'waitForDocumentLoaded: document not loaded after ' + timeoutInMilliseconds + ' ms.';
                 }
 
-                _this2.api.assertion(pageLoaded, readyState, 'complete', messageToShow, true);
+                _this2.api.assert.equal(readyState, 'complete', messageToShow);
                 return _this2.emit('complete');
             }, timeoutInMilliseconds);
         }
