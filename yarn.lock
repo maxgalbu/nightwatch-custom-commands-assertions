@@ -879,10 +879,10 @@ chownr@^2.0.0:
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-2.0.0.tgz#15bfbe53d2eab4cf70f18a8cd68ebe5b3cb1dece"
   integrity sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==
 
-chromedriver@~2.19:
-  version "2.19.0"
-  resolved "https://registry.yarnpkg.com/chromedriver/-/chromedriver-2.19.0.tgz#ea022b3f22aa0732f11430946101703aa4a004c4"
-  integrity sha1-6gIrPyKqBzLxFDCUYQFwOqSgBMQ=
+chromedriver@~2.26:
+  version "2.26.1"
+  resolved "https://registry.yarnpkg.com/chromedriver/-/chromedriver-2.26.1.tgz#60036732224580d2699afd2626f5f26ea1f6c9fe"
+  integrity sha1-YANnMiJFgNJpmv0mJvXybqH2yf4=
   dependencies:
     adm-zip "^0.4.7"
     kew "^0.5.0"
